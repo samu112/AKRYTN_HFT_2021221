@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AKRYTN_HFT_2021221_Models\AKRYTN_HFT_2021221_Models.csproj" />
+  </ItemGroup>
+
+</Project>

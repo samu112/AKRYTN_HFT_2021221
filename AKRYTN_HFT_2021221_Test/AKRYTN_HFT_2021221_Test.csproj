@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AKRYTN_HFT_2021221_Logic\AKRYTN_HFT_2021221_Logic.csproj" />
+    <ProjectReference Include="..\AKRYTN_HFT_2021221_Models\AKRYTN_HFT_2021221_Models.csproj" />
+    <ProjectReference Include="..\AKRYTN_HFT_2021221_Repository\AKRYTN_HFT_2021221_Repository.csproj" />
+  </ItemGroup>
+
+</Project>
