@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AKRYTN_HFT_2021221_Data
+namespace AKRYTN_HFT_2021221.Data
 {
     public class BookStoreDbContext : DbContext
     {
