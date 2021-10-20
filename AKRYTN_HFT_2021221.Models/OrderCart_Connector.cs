@@ -21,7 +21,7 @@ namespace AKRYTN_HFT_2021221.Models
         public int occ_cartItem_id { get; set; }
 
         [NotMapped]
-        public virtual Cart CartItem { get; set; }
+        public virtual CartItem CartItem { get; set; }
 
         // FK: Id of the cart
         [ForeignKey(nameof(Cart))]
