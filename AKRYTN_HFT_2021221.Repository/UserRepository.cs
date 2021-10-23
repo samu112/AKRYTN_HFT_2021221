@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Repository
 {
-    class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository(BookStoreDbContext dbContext) : base(dbContext)
         {
