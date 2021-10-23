@@ -9,6 +9,7 @@ namespace AKRYTN_HFT_2021221.Client
         {
 
             Console.WriteLine("Hello World!");
+            
         }
     }
 }
