@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Repository
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         void UpdateName(int id, string newName);
 
