@@ -30,7 +30,7 @@ namespace AKRYTN_HFT_2021221.Models
 
         // FK: Id of the publisher
         [ForeignKey(nameof(Publisher))]
-        public int b_publisher_id { get; set; }
+        public int? b_publisher_id { get; set; }
 
         [NotMapped]
         public virtual Publisher Publisher { get; set; }
