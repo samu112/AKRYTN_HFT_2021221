@@ -23,7 +23,7 @@ namespace AKRYTN_HFT_2021221.Models
         public string p_address { get; set; } // Stores the addres of the publisher
 
 
-        public string? p_website { get; set; } // Stores the website of the publisher
+        public string p_website { get; set; } // Stores the website of the publisher
 
         [Required]
         public string p_email { get; set; } // Stores the email of the publisher

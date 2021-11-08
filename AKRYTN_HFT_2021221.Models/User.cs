@@ -20,7 +20,7 @@ namespace AKRYTN_HFT_2021221.Models
         public DateTime u_RegDate { get; set; } // Stores the registration date of the user
 
         
-        public string? u_Address { get; set; } // Stores the address of the user
+        public string u_Address { get; set; } // Stores the address of the user
 
         [Required]
         [MaxLength(320)]
