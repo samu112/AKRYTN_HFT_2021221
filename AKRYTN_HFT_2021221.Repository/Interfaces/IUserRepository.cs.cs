@@ -11,13 +11,11 @@ namespace AKRYTN_HFT_2021221.Repository
     {
         void UpdateName(int id, string newName);
 
-        void UpdateRegDate(int id, DateTime  newDate);
+        void UpdateRegDate(int id, DateTime newDate);
 
-        void UpdateRegDate(int id, string newAddress);
+        void UpdateAddress(int id, string newAddres);
 
         void UpdateEmail(int id, string newEmail);
-
-        void UpdateCartId(int id, int newCartId);
 
     }
 }

@@ -26,6 +26,13 @@ namespace AKRYTN_HFT_2021221.Repository
             this.dbContext.SaveChanges();
         }
 
+        public void UpdateCartId(int id, int newCartId)
+        {
+            var cartItem = this.GetOneById(id);
+            cartItem.ci_cart_id = newCartId;
+            this.dbContext.SaveChanges();
+        }
+
         public void UpdateQuantity(int id, int newQuantity)
         {
             var cartItem = this.GetOneById(id);

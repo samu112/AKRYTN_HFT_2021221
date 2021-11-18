@@ -24,7 +24,7 @@ namespace AKRYTN_HFT_2021221.Models
         public bool c_deliver { get; set; } // Stores if it should be delivered or not (true==deliver, false==no deliver)
 
         [Required]
-        public bool status { get; set; } // Stores if it is paid for or not(true==unpaid, false==paid)
+        public bool c_status { get; set; } // Stores if it is paid for or not(true==unpaid, false==paid)
 
         // FK: Id of the user
         [ForeignKey(nameof(User))]

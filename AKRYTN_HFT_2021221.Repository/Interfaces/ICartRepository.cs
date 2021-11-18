@@ -14,5 +14,10 @@ namespace AKRYTN_HFT_2021221.Repository
         void UpdateBillingAddress(int id, string newBillingAddress);
 
         void UpdateDeliver(int id, bool newDeliver);
+
+        void UpdateStatus(int id, bool newStatus);
+
+        void UpdateUserId(int id, int newUserId);
+
     }
 }

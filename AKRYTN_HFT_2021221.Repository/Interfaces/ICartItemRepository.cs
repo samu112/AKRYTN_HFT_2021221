@@ -13,5 +13,7 @@ namespace AKRYTN_HFT_2021221.Repository
 
         void UpdateBookId(int id, int newBookId);
 
+        void UpdateCartId(int id, int newCartId);
+
     }
 }

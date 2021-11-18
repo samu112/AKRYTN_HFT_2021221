@@ -19,10 +19,10 @@ namespace AKRYTN_HFT_2021221.Repository
             return this.GetAll().SingleOrDefault(x => x.u_Id == id);
         }
 
-        public void UpdateCartId(int id, int newCartId)
+        public void UpdateAddress(int id, string newAddres)
         {
             var user = this.GetOneById(id);
-            user.u_CartId = newCartId;
+            user.u_Address = newAddres;
             this.dbContext.SaveChanges();
         }
 
@@ -47,11 +47,5 @@ namespace AKRYTN_HFT_2021221.Repository
             this.dbContext.SaveChanges();
         }
 
-        public void UpdateRegDate(int id, string newAddress)
-        {
-            var user = this.GetOneById(id);
-            user.u_Address = newAddress;
-            this.dbContext.SaveChanges();
-        }
     }
 }
