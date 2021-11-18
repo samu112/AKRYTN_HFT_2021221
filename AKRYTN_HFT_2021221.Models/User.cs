@@ -1,5 +1,6 @@
 ﻿using AKRYTN_HFT_2021221.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,12 +27,13 @@ namespace AKRYTN_HFT_2021221.Models
         [MaxLength(320)]
         public string u_Email { get; set; } // Stores the email address of the user
 
-        // FK: Id of the cart
-        [ForeignKey(nameof(Cart))]
-        public int u_CartId { get; set; } 
 
         [NotMapped]
-        public virtual Cart Cart { get; set; } 
+        public virtual ICollection<Cart> Cart { get; set; }
 
+        public User()
+        {
+                Cart = new HashSet<Cart>();
+        }
     }
 }

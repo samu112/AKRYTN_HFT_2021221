@@ -24,8 +24,12 @@ namespace AKRYTN_HFT_2021221.Models
         [NotMapped]
         public virtual Book Book { get; set; }
 
+        // FK: Id of the book
+        [ForeignKey(nameof(Cart))]
+        public int ci_cart_id { get; set; }
+
         [NotMapped]
-        public virtual ICollection<OrderCart_Connector> Conn { get; }
+        public virtual Cart Cart { get; set; }
 
     }
 }

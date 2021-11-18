@@ -15,7 +15,6 @@ namespace AKRYTN_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int c_Id { get; set; } // PK: Id of the item
 
-        [Required]
         public string c_creditcardNumber { get; set; } // Stores the credit card number
 
         [Required]
@@ -24,9 +23,22 @@ namespace AKRYTN_HFT_2021221.Models
         [Required]
         public bool c_deliver { get; set; } // Stores if it should be delivered or not (true==deliver, false==no deliver)
 
-        [NotMapped]
-        public virtual ICollection<OrderCart_Connector> Conn { get; }
+        [Required]
+        public bool status { get; set; } // Stores if it is paid for or not(true==unpaid, false==paid)
+
+        // FK: Id of the user
+        [ForeignKey(nameof(User))]
+        public int c_user_id { get; set; }
+
         [NotMapped]
         public virtual User User { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<CartItem> CartItem { get; set; }
+
+        public Cart()
+        {
+            CartItem = new HashSet<CartItem>();
+        }
     }
 }
