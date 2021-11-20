@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Logic
 {
-    class UserLogic : IUserLogic
+    public class UserLogic : IUserLogic
     {
         private readonly IUserRepository repo;
 
@@ -31,7 +31,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //CRUD METHODS:
 
-        public void DeleteBook(int id)
+        public void DeleteUser(int id)
         {
             throw new NotImplementedException();
         }
@@ -46,27 +46,27 @@ namespace AKRYTN_HFT_2021221.Logic
             return this.repo.GetAll().ToList();
         }
 
-        public void InsertUser(User user)
+        public void AddNewUser(User user)
         {
             this.repo.Insert(user);
         }
 
-        public void UpdateUserAddress(int id, string newAddress)
+        public void ChangeUserAddress(int id, string newAddress)
         {
             this.repo.UpdateAddress(id, newAddress);
         }
 
-        public void UpdateUserEmail(int id, string newEmail)
+        public void ChangeUserEmail(int id, string newEmail)
         {
             this.repo.UpdateEmail(id, newEmail);
         }
 
-        public void UpdateUserName(int id, string newName)
+        public void ChangeUserName(int id, string newName)
         {
             this.repo.UpdateName(id, newName);
         }
 
-        public void UpdateUserRegDate(int id, DateTime newRegDate)
+        public void ChangeUserRegDate(int id, DateTime newRegDate)
         {
             this.repo.UpdateRegDate(id, newRegDate);
         }

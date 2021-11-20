@@ -11,25 +11,25 @@ namespace AKRYTN_HFT_2021221.Logic
     {
 
         //CRUD
-        void InsertCart(Cart cart);
+        void AddNewCart(Cart cart);
 
         Cart GetCart(int id);
 
         IEnumerable<Cart> GetCarts();
 
-        void UpdateCartcreditcardNumber(int id, string newCardNumber);
+        void ChangeCartcreditcardNumber(int id, string newCardNumber);
 
-        void UpdateCartBillingAddress(int id, string newAddress);
+        void ChangeCartBillingAddress(int id, string newAddress);
 
-        void UpdateCartDeliver(int id, bool newStatus);
+        void ChangeCartDeliverStatus(int id, bool newStatus);
 
-        void UpdateCartStatus(int id, bool newStatus);
+        void ChangeCartStatus(int id, bool newStatus);
 
-        void UpdateCartsUser(int id, int newId);
+        void ChangeCartsUser(int id, int newId);
 
-        void DeleteBook(int id);
+        void DeleteCart(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetCartItems(int id);
+        IEnumerable<string> GetItemsInThisCart(int id);
     }
 }

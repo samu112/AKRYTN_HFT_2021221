@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Logic
 {
-    class CartItemLogic : ICartItemLogic
+    public class CartItemLogic : ICartItemLogic
     {
         private readonly ICartItemRepository repo;
 
@@ -28,7 +28,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //CRUD METHODS:
 
-        public void DeleteBook(int id)
+        public void DeleteCartItem(int id)
         {
             throw new NotImplementedException();
         }
@@ -38,27 +38,27 @@ namespace AKRYTN_HFT_2021221.Logic
             return this.repo.GetOneById(id);
         }
 
-        public IEnumerable<CartItem> GetCartItems()
+        public IEnumerable<CartItem> GetAllCartItems()
         {
             return this.repo.GetAll().ToList();
         }
 
-        public void InsertCartItem(CartItem cartItem)
+        public void AddNewCartItem(CartItem cartItem)
         {
             this.repo.Insert(cartItem);
         }
 
-        public void UpdateCartItemBookId(int id, int newBookId)
+        public void ChangeCartItemBookId(int id, int newBookId)
         {
             this.repo.UpdateBookId(id, newBookId);
         }
 
-        public void UpdateCartItemCartId(int id, int newCartId)
+        public void ChangeCartItemCartId(int id, int newCartId)
         {
             this.repo.UpdateCartId(id, newCartId);
         }
 
-        public void UpdateCartItemQuantity(int id, int newQuanity)
+        public void ChangeCartItemQuantity(int id, int newQuanity)
         {
             this.repo.UpdateQuantity(id, newQuanity);
         }

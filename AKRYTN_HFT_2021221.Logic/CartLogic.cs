@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Logic
 {
-    class CartLogic : ICartLogic
+    public class CartLogic : ICartLogic
     {
         private readonly ICartRepository repo;
 
@@ -24,14 +24,14 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetCartItems(int id)
+        public IEnumerable<string> GetItemsInThisCart(int id)
         {
             throw new NotImplementedException();
         }
         
         //CRUD METHODS:
 
-        public void DeleteBook(int id)
+        public void DeleteCart(int id)
         {
             throw new NotImplementedException();
         }
@@ -46,32 +46,32 @@ namespace AKRYTN_HFT_2021221.Logic
             return this.repo.GetAll().ToList();
         }
 
-        public void InsertCart(Cart cart)
+        public void AddNewCart(Cart cart)
         {
             this.repo.Insert(cart);
         }
 
-        public void UpdateCartBillingAddress(int id, string newAddress)
+        public void ChangeCartBillingAddress(int id, string newAddress)
         {
             this.repo.UpdateBillingAddress(id, newAddress);
         }
 
-        public void UpdateCartcreditcardNumber(int id, string newCardNumber)
+        public void ChangeCartcreditcardNumber(int id, string newCardNumber)
         {
             this.repo.UpdateCreditCard(id, newCardNumber);
         }
 
-        public void UpdateCartDeliver(int id, bool newStatus)
+        public void ChangeCartDeliverStatus(int id, bool newStatus)
         {
             this.repo.UpdateDeliver(id, newStatus);
         }
 
-        public void UpdateCartStatus(int id, bool newStatus)
+        public void ChangeCartStatus(int id, bool newStatus)
         {
             this.repo.UpdateStatus(id, newStatus);
         }
 
-        public void UpdateCartsUser(int id, int newId)
+        public void ChangeCartsUser(int id, int newId)
         {
             this.repo.UpdateUserId(id, newId);
         }

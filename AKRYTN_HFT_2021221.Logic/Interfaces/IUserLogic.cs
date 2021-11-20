@@ -10,21 +10,21 @@ namespace AKRYTN_HFT_2021221.Logic
     public interface IUserLogic
     {
         //CRUD
-        void InsertUser(User user);
+        void AddNewUser(User user);
 
         User GetUser(int id);
 
         IEnumerable<User> GetUsers();
 
-        void UpdateUserName(int id, string newName);
+        void ChangeUserName(int id, string newName);
 
-        void UpdateUserRegDate(int id, DateTime newRegDate);
+        void ChangeUserRegDate(int id, DateTime newRegDate);
 
-        void UpdateUserAddress(int id, string newAddress);
+        void ChangeUserAddress(int id, string newAddress);
 
-        void UpdateUserEmail(int id, string newEmail);
+        void ChangeUserEmail(int id, string newEmail);
 
-        void DeleteBook(int id);
+        void DeleteUser(int id);
 
         //NON-CRUD
         IEnumerable<string> GetUserCarts(int id);

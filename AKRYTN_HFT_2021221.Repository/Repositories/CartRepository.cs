@@ -16,7 +16,7 @@ namespace AKRYTN_HFT_2021221.Repository
 
         public override Cart GetOneById(int id)
         {
-            return this.GetAll().SingleOrDefault(x => x.c_Id == id);
+            return this.GetAll().SingleOrDefault(x => x.c_id == id);
         }
 
         public void UpdateBillingAddress(int id, string newBillingAddress)
@@ -26,7 +26,7 @@ namespace AKRYTN_HFT_2021221.Repository
             this.dbContext.SaveChanges();
         }
 
-        public void UpdateCreditCart(int id, string newCreditCard)
+        public void UpdateCreditCard(int id, string newCreditCard)
         {
             var cart = this.GetOneById(id);
             cart.c_creditcardNumber = newCreditCard;

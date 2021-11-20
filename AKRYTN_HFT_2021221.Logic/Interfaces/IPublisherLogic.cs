@@ -10,21 +10,21 @@ namespace AKRYTN_HFT_2021221.Logic
     public interface IPublisherLogic
     {
         //CRUD
-        void InsertPublisher(Publisher publisher);
+        void AddNewPublisher(Publisher publisher);
 
         Publisher GetPublisher(int id);
 
         IEnumerable<Publisher> GetPublishers();
 
-        void UpdatePublisherName(int id, string newName);
+        void ChangePublisherName(int id, string newName);
 
-        void UpdatePublisherAddress(int id, string newAddress);
+        void ChangePublisherAddress(int id, string newAddress);
 
-        void UpdatePublisherWebsite(int id, string newWebsite);
+        void ChangePublisherWebsite(int id, string newWebsite);
 
-        void UpdatePublisherEmail(int id, string newEmail);
+        void ChangePublisherEmail(int id, string newEmail);
 
-        void DeleteBook(int id);
+        void DeletePublisher(int id);
 
         //NON-CRUD
         IEnumerable<string> GetPublisherBooks(int id);

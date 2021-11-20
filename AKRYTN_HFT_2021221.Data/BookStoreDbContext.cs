@@ -69,14 +69,14 @@ namespace AKRYTN_HFT_2021221.Data
             //Seed
 
             //Users
-            User user1 = new User() { u_Id = 1, u_Name="Philip Jones", u_RegDate = DateTime.Parse("2011.02.11 06:30:33"), u_Address= "6th Apple street US", u_Email= "PhilipJones@gmail.com"};
-            User user2 = new User() { u_Id = 2, u_Name = "Harry Potter", u_RegDate = DateTime.Parse("2015.06.01 02:30:00"), u_Address = "4th Grape street US", u_Email = "HarryPotter@gmail.com" };
+            User user1 = new User() { u_id = 1, u_name="Philip Jones", u_regDate = DateTime.Parse("2011.02.11 06:30:33"), u_address= "6th Apple street US", u_email= "PhilipJones@gmail.com"};
+            User user2 = new User() { u_id = 2, u_name = "Harry Potter", u_regDate = DateTime.Parse("2015.06.01 02:30:00"), u_address = "4th Grape street US", u_email = "HarryPotter@gmail.com" };
 
             modelBuilder.Entity<User>().HasData(user1, user2);
 
             //Cart
-            Cart cart1 = new Cart() { c_Id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, c_status = false, c_user_id = 1 };
-            Cart cart2 = new Cart() { c_Id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, c_status = true, c_user_id = 2 };
+            Cart cart1 = new Cart() { c_id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, c_status = false, c_user_id = 1 };
+            Cart cart2 = new Cart() { c_id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, c_status = true, c_user_id = 2 };
 
             modelBuilder.Entity<Cart>().HasData(cart1, cart2);
 

@@ -11,21 +11,21 @@ namespace AKRYTN_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int u_Id { get; set; } // PK: Own Id
+        public int u_id { get; set; } // PK: Own Id
 
         [Required]
         [MaxLength(100)]
-        public string u_Name { get; set; } // Stores the full name of the user
+        public string u_name { get; set; } // Stores the full name of the user
 
         [Required]
-        public DateTime u_RegDate { get; set; } // Stores the registration date of the user
+        public DateTime u_regDate { get; set; } // Stores the registration date of the user
 
         
-        public string u_Address { get; set; } // Stores the address of the user
+        public string u_address { get; set; } // Stores the address of the user
 
         [Required]
         [MaxLength(320)]
-        public string u_Email { get; set; } // Stores the email address of the user
+        public string u_email { get; set; } // Stores the email address of the user
 
 
         [NotMapped]

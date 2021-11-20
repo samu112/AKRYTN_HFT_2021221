@@ -24,7 +24,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetPublisherName(int id)
+        public IEnumerable<string> GetBookPublisherName(int id)
         {
             throw new NotImplementedException();
         }
@@ -46,32 +46,32 @@ namespace AKRYTN_HFT_2021221.Logic
             return this.repo.GetAll().ToList();
         }
 
-        public void InsertBook(Book book)
+        public void AddBook(Book book)
         {
             this.repo.Insert(book);
         }
 
-        public void UpdateBookAuthor(int id, string newAuthor)
+        public void ChangeBookAuthor(int id, string newAuthor)
         {
             this.repo.UpdateAuthor(id, newAuthor);
         }
 
-        public void UpdateBookTitle(int id, string newTitle)
+        public void ChangeBookTitle(int id, string newTitle)
         {
             this.repo.UpdateTitle(id, newTitle);
         }
 
-        public void UpdatePrice(int id, int newPrice)
+        public void ChangeBookPrice(int id, int newPrice)
         {
             this.repo.UpdatePrice(id, newPrice);
         }
 
-        public void UpdatePublisher(int id, int newid)
+        public void ChangeBookPublisher(int id, int newid)
         {
             this.repo.UpdatePublisherid(id, newid);
         }
 
-        public void UpdateReleaseDate(int id, DateTime newDate)
+        public void ChangeBookReleaseDate(int id, DateTime newDate)
         {
             this.repo.UpdateReleaseDate(id, newDate);
         }

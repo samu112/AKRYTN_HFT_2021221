@@ -10,19 +10,19 @@ namespace AKRYTN_HFT_2021221.Logic
     public interface ICartItemLogic
     {
         //CRUD
-        void InsertCartItem(CartItem cartItem);
+        void AddNewCartItem(CartItem cartItem);
 
         CartItem GetCartItem(int id);
 
-        IEnumerable<CartItem> GetCartItems();
+        IEnumerable<CartItem> GetAllCartItems();
 
-        void UpdateCartItemBookId(int id, int newBookId);
+        void ChangeCartItemBookId(int id, int newBookId);
 
-        void UpdateCartItemCartId(int id, int newCartId);
+        void ChangeCartItemCartId(int id, int newCartId);
 
-        void UpdateCartItemQuantity(int id, int newQuanity);
+        void ChangeCartItemQuantity(int id, int newQuanity);
 
-        void DeleteBook(int id);
+        void DeleteCartItem(int id);
 
         //NON-CRUD
         

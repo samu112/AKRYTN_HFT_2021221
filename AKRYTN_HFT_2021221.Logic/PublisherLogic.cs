@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Logic
 {
-    class PublisherLogic : IPublisherLogic
+    public class PublisherLogic : IPublisherLogic
     {
         private readonly IPublisherRepository repo;
 
@@ -31,7 +31,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //CRUD METHODS:
 
-        public void DeleteBook(int id)
+        public void DeletePublisher(int id)
         {
             throw new NotImplementedException();
         }
@@ -46,27 +46,27 @@ namespace AKRYTN_HFT_2021221.Logic
             return this.repo.GetAll().ToList();
         }
 
-        public void InsertPublisher(Publisher publisher)
+        public void AddNewPublisher(Publisher publisher)
         {
             this.repo.Insert(publisher);
         }
 
-        public void UpdatePublisherAddress(int id, string newAddress)
+        public void ChangePublisherAddress(int id, string newAddress)
         {
             this.repo.UpdateAddress(id, newAddress);
         }
 
-        public void UpdatePublisherEmail(int id, string newEmail)
+        public void ChangePublisherEmail(int id, string newEmail)
         {
             this.repo.UpdateEmail(id, newEmail);
         }
 
-        public void UpdatePublisherName(int id, string newName)
+        public void ChangePublisherName(int id, string newName)
         {
             this.repo.UpdateName(id, newName);
         }
 
-        public void UpdatePublisherWebsite(int id, string newWebsite)
+        public void ChangePublisherWebsite(int id, string newWebsite)
         {
             this.repo.UpdateWebsite(id, newWebsite);
         }

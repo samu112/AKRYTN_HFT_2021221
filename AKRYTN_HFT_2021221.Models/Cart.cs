@@ -13,7 +13,7 @@ namespace AKRYTN_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int c_Id { get; set; } // PK: Id of the item
+        public int c_id { get; set; } // PK: Id of the item
 
         public string c_creditcardNumber { get; set; } // Stores the credit card number
 
