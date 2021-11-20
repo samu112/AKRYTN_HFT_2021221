@@ -75,8 +75,8 @@ namespace AKRYTN_HFT_2021221.Data
             modelBuilder.Entity<User>().HasData(user1, user2);
 
             //Cart
-            Cart cart1 = new Cart() { c_Id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, status = false, c_user_id = 1 };
-            Cart cart2 = new Cart() { c_Id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, status = true, c_user_id = 2 };
+            Cart cart1 = new Cart() { c_Id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, c_status = false, c_user_id = 1 };
+            Cart cart2 = new Cart() { c_Id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, c_status = true, c_user_id = 2 };
 
             modelBuilder.Entity<Cart>().HasData(cart1, cart2);
 
@@ -95,9 +95,8 @@ namespace AKRYTN_HFT_2021221.Data
             //Book
 
             Book book1 = new Book() { b_id = 1, b_title = "How to become Rich!", b_author = "Rich Richard", b_price = 25000, b_releaseDate = DateTime.Parse("2021.02.01 00:00:00"), b_publisher_id = 1 };
-            
-            modelBuilder.Entity<Book>().HasData(book1);
 
+            modelBuilder.Entity<Book>().HasData(book1);
         }
     }
 }

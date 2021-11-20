@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Repository
 {
-   public class PublisherRepository : Repository<Publisher>, IPublisherRepository
+    public class PublisherRepository : Repository<Publisher>, IPublisherRepository
     {
         public PublisherRepository(BookStoreDbContext dbContext) : base(dbContext)
         {
