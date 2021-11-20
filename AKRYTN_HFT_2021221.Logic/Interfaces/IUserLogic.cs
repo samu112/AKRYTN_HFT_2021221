@@ -12,9 +12,9 @@ namespace AKRYTN_HFT_2021221.Logic
         //CRUD
         void InsertUser(User user);
 
-        User GetUsers(int id);
+        User GetUser(int id);
 
-        IEnumerable<User> GetUserss();
+        IEnumerable<User> GetUsers();
 
         void UpdateUserName(int id, string newName);
 

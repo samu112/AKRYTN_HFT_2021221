@@ -11,7 +11,7 @@ namespace AKRYTN_HFT_2021221.Logic
     {
 
         //CRUD
-        void InsertCart(Cart Cart);
+        void InsertCart(Cart cart);
 
         Cart GetCart(int id);
 

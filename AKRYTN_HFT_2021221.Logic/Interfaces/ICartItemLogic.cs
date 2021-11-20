@@ -10,7 +10,7 @@ namespace AKRYTN_HFT_2021221.Logic
     public interface ICartItemLogic
     {
         //CRUD
-        void InsertCartItem(CartItem CartItem);
+        void InsertCartItem(CartItem cartItem);
 
         CartItem GetCartItem(int id);
 
@@ -25,6 +25,6 @@ namespace AKRYTN_HFT_2021221.Logic
         void DeleteBook(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetCartItems(int id);
+        
     }
 }

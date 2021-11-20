@@ -22,12 +22,16 @@ namespace AKRYTN_HFT_2021221.Logic
             this.repo = repo;
         }
 
-        public void DeleteBook(int id)
+        //NON-CRUD METHODS:
+
+        public IEnumerable<string> GetPublisherName(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<string> GetPublisherName(int id)
+        //CRUD METHODS:
+
+        public void DeleteBook(int id)
         {
             throw new NotImplementedException();
         }
