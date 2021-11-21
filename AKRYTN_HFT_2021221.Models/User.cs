@@ -29,11 +29,7 @@ namespace AKRYTN_HFT_2021221.Models
 
 
         [NotMapped]
-        public virtual ICollection<Cart> Cart { get; set; }
+        public virtual Cart Cart { get; set; }
 
-        public User()
-        {
-                Cart = new HashSet<Cart>();
-        }
     }
 }

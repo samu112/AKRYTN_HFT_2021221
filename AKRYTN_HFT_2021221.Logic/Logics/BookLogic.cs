@@ -46,36 +46,23 @@ namespace AKRYTN_HFT_2021221.Logic
                     var GetCartsWithTheseCartItems = cartRepo.GetAll().Where(cart => GetCartItemsWithThisBook.Any(cartItem => cartItem.ci_cart_id == cart.c_id));
                     foreach (Cart cart in GetCartsWithTheseCartItems)
                     {
-                        if (cart.c_status == true)
+                        foreach (CartItem cartItem in GetCartItemsWithThisBook)
                         {
-                            foreach (CartItem cartItem in GetCartItemsWithThisBook)
+                            if (cartItem.ci_cart_id == cart.c_id)
                             {
-                                if (cartItem.ci_cart_id == cart.c_id)
-                                {
-                                    cartItemRepo.Remove(cartItem.ci_id);
-                                }
+                                cartItemRepo.Remove(cartItem.ci_id);
                             }
-                        } //if the cart is not paid yet, delete its cartItems that contains this book
-                        else
-                        {
-                            foreach (CartItem cartItem in GetCartItemsWithThisBook)
-                            {
-                                if (cartItem.ci_cart_id == cart.c_id)
-                                {
-                                    cartItemRepo.UpdateBookId(cartItem.ci_cart_id, -1);
-                                }
-                            }
-                        } //if cart is paid, then its cartItems book id is negative, negatives means book no longer exist.
+                        }
                     }
                 }//If we found cartItem with this book in it
                 bookRepo.Remove(id);
                 //If the book wasn't in any cartItem
                 return true;
-            }//If book with this Id does EXIST
+            } //If book with this Id does EXIST
             else
             {
                 return false;
-            }//If book with this Id does NOT exist
+            } //If book with this Id does NOT exist
         }
 
         public Book GetBook(int id)

@@ -23,8 +23,6 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangeCartDeliverStatus(int id, bool newStatus);
 
-        void ChangeCartStatus(int id, bool newStatus);
-
         void ChangeCartsUser(int id, int newId);
 
         bool DeleteCart(int id);

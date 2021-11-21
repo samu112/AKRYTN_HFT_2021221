@@ -10,16 +10,18 @@ namespace AKRYTN_HFT_2021221.Logic
 {
     public class CartLogic : ICartLogic
     {
-        private readonly ICartRepository repo;
+        private ICartRepository cartRepo;
+        private ICartItemRepository cartItemRepo;
 
         public CartLogic()
         {
-            this.repo = new CartRepository(new Data.BookStoreDbContext());
+            this.cartRepo = new CartRepository(new Data.BookStoreDbContext());
         }
         //Constructor overload for testing.
-        public CartLogic(ICartRepository repo)
+        public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo)
         {
-            this.repo = repo;
+            this.cartRepo = cartRepo;
+            this.cartItemRepo = cartItemRepo;
         }
 
         //NON-CRUD METHODS:
@@ -33,47 +35,58 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public bool DeleteCart(int id)
         {
-            throw new NotImplementedException();
+            if (cartRepo.GetAll().Any(cart => cart.c_id == id))
+            {
+                var cartItemsInCart = cartItemRepo.GetAll().Where(cartItem => cartItem.ci_cart_id == id);
+                if (cartItemsInCart.Count() != 0)
+                {
+                    foreach (CartItem cartItem in cartItemsInCart)
+                    {
+                        cartItemRepo.Remove(cartItem.ci_id);
+                    }
+                } //If cart has cartItems, delete them as well
+                cartRepo.Remove(id);
+                return true;
+            } //If cart with this Id does EXIST
+            else
+            {
+                return false;
+            } //If cart with this Id does NOT exist
         }
 
         public Cart GetCart(int id)
         {
-            return this.repo.GetOneById(id);
+            return this.cartRepo.GetOneById(id);
         }
 
         public IEnumerable<Cart> GetCarts()
         {
-            return this.repo.GetAll().ToList();
+            return this.cartRepo.GetAll().ToList();
         }
 
         public void AddNewCart(Cart cart)
         {
-            this.repo.Insert(cart);
+            this.cartRepo.Insert(cart);
         }
 
         public void ChangeCartBillingAddress(int id, string newAddress)
         {
-            this.repo.UpdateBillingAddress(id, newAddress);
+            this.cartRepo.UpdateBillingAddress(id, newAddress);
         }
 
         public void ChangeCartcreditcardNumber(int id, string newCardNumber)
         {
-            this.repo.UpdateCreditCard(id, newCardNumber);
+            this.cartRepo.UpdateCreditCard(id, newCardNumber);
         }
 
         public void ChangeCartDeliverStatus(int id, bool newStatus)
         {
-            this.repo.UpdateDeliver(id, newStatus);
-        }
-
-        public void ChangeCartStatus(int id, bool newStatus)
-        {
-            this.repo.UpdateStatus(id, newStatus);
+            this.cartRepo.UpdateDeliver(id, newStatus);
         }
 
         public void ChangeCartsUser(int id, int newId)
         {
-            this.repo.UpdateUserId(id, newId);
+            this.cartRepo.UpdateUserId(id, newId);
         }
     }
 }

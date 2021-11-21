@@ -34,8 +34,8 @@ namespace AKRYTN_HFT_2021221.Data
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.HasOne(cart => cart.User).
-                WithMany(user => user.Cart).
-                HasForeignKey(cart => cart.c_user_id).
+                WithOne(user => user.Cart).
+                HasForeignKey<Cart>(cart => cart.c_user_id).
                 OnDelete(DeleteBehavior.ClientSetNull);
 
             });
@@ -75,8 +75,8 @@ namespace AKRYTN_HFT_2021221.Data
             modelBuilder.Entity<User>().HasData(user1, user2);
 
             //Cart
-            Cart cart1 = new Cart() { c_id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, c_status = false, c_user_id = 1 };
-            Cart cart2 = new Cart() { c_id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, c_status = true, c_user_id = 2 };
+            Cart cart1 = new Cart() { c_id = 1, c_billingAddress = "16th DontCome Street Russia", c_creditcardNumber = "341111111111111", c_deliver = true, c_user_id = 1 };
+            Cart cart2 = new Cart() { c_id = 2, c_billingAddress = "14th Come Street Canada", c_creditcardNumber = "341111111511111", c_deliver = false, c_user_id = 2 };
 
             modelBuilder.Entity<Cart>().HasData(cart1, cart2);
 

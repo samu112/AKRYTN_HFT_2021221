@@ -10,16 +10,16 @@ namespace AKRYTN_HFT_2021221.Logic
 {
     public class CartItemLogic : ICartItemLogic
     {
-        private readonly ICartItemRepository repo;
+        private ICartItemRepository cartItemRepo;
 
         public CartItemLogic()
         {
-            this.repo = new CartItemRepository(new Data.BookStoreDbContext());
+            this.cartItemRepo = new CartItemRepository(new Data.BookStoreDbContext());
         }
         //Constructor overload for testing.
-        public CartItemLogic(ICartItemRepository repo)
+        public CartItemLogic(ICartItemRepository cartItemRepo)
         {
-            this.repo = repo;
+            this.cartItemRepo = cartItemRepo;
         }
 
         //NON-CRUD METHODS:
@@ -30,37 +30,45 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public bool DeleteCartItem(int id)
         {
-            
+            if (cartItemRepo.GetAll().Any(cartItem => cartItem.ci_id == id))
+            {
+                cartItemRepo.Remove(id);
+                return true;
+            } //If cartItem with this Id does EXIST
+            else
+            {
+                return false;
+            } //If cartItem with this Id does NOT exist
         }
 
         public CartItem GetCartItem(int id)
         {
-            return this.repo.GetOneById(id);
+            return this.cartItemRepo.GetOneById(id);
         }
 
         public IEnumerable<CartItem> GetAllCartItems()
         {
-            return this.repo.GetAll().ToList();
+            return this.cartItemRepo.GetAll().ToList();
         }
 
         public void AddNewCartItem(CartItem cartItem)
         {
-            this.repo.Insert(cartItem);
+            this.cartItemRepo.Insert(cartItem);
         }
 
         public void ChangeCartItemBookId(int id, int newBookId)
         {
-            this.repo.UpdateBookId(id, newBookId);
+            this.cartItemRepo.UpdateBookId(id, newBookId);
         }
 
         public void ChangeCartItemCartId(int id, int newCartId)
         {
-            this.repo.UpdateCartId(id, newCartId);
+            this.cartItemRepo.UpdateCartId(id, newCartId);
         }
 
         public void ChangeCartItemQuantity(int id, int newQuanity)
         {
-            this.repo.UpdateQuantity(id, newQuanity);
+            this.cartItemRepo.UpdateQuantity(id, newQuanity);
         }
     }
 }

@@ -53,8 +53,9 @@ namespace AKRYTN_HFT_2021221_Test
         {
             //Arrange
             Mock<IPublisherRepository> publisherRepo = new Mock<IPublisherRepository>();
+            Mock<IBookRepository> bookRepo = new Mock<IBookRepository>();
             publisherRepo.Setup(repo => repo.Insert(It.IsAny<Publisher>()));
-            PublisherLogic logic = new PublisherLogic(publisherRepo.Object);
+            PublisherLogic logic = new PublisherLogic(publisherRepo.Object, bookRepo.Object);
             Publisher testAddPublisher = new Publisher { 
                                                             p_id = 1, p_name = "Good Book Publisher",
                                                             p_address = "nowhere 6",
@@ -114,9 +115,9 @@ namespace AKRYTN_HFT_2021221_Test
             };
             List<Cart> CartList = new List<Cart>()
             {
-                new Cart() { c_id = 1, c_billingAddress = "2041 Douglas Avenue, Brewton AL 36426", c_creditcardNumber = "374602027947747", c_deliver = false, c_status = false, c_user_id = 2 },
-                new Cart() { c_id = 2, c_billingAddress = "85 Crooked Hill Road, Commack NY 11725", c_creditcardNumber = "374602027947747", c_deliver = false, c_status = false, c_user_id = 2 },
-                new Cart() { c_id = 3, c_billingAddress = "3176 South Eufaula Avenue, Eufaula AL 36027", c_creditcardNumber = "2720059742859433", c_deliver = true, c_status = false, c_user_id = 1 }
+                new Cart() { c_id = 1, c_billingAddress = "2041 Douglas Avenue, Brewton AL 36426", c_creditcardNumber = "374602027947747", c_deliver = false, c_user_id = 2 },
+                new Cart() { c_id = 2, c_billingAddress = "85 Crooked Hill Road, Commack NY 11725", c_creditcardNumber = "374602027947747", c_deliver = false, c_user_id = 2 },
+                new Cart() { c_id = 3, c_billingAddress = "3176 South Eufaula Avenue, Eufaula AL 36027", c_creditcardNumber = "2720059742859433", c_deliver = true, c_user_id = 1 }
             };
 
             bookRepo.Setup(repo => repo.Remove(It.IsAny<int>()));

@@ -37,7 +37,25 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public bool DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            if (userRepo.GetAll().Any(user => user.u_id == id))
+            {
+                var userCart = cartRepo.GetAll().Where(cart => cart.c_user_id == id);
+                if (userCart.Count() != 0)
+                {
+                    var cartCartItems = cartItemRepo.GetAll().Where(cartItem => cartItem.ci_cart_id == userCart.SingleOrDefault().c_id);
+                    foreach (CartItem cartItem in cartCartItems)
+                    {
+                        cartItemRepo.Remove(cartItem.ci_id);
+                    }
+                    cartRepo.Remove(userCart.SingleOrDefault().c_id);
+                }//If user have a cart, remove the items from it and then the cart itself
+                userRepo.Remove(id);
+                return true;
+            } //If user with this Id does EXIST
+            else
+            {
+                return false;
+            } //If user with this Id does NOT exist
         }
 
         public User GetUser(int id)
