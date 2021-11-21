@@ -31,7 +31,7 @@ namespace AKRYTN_HFT_2021221.Logic
         
         //CRUD METHODS:
 
-        public void DeleteCart(int id)
+        public bool DeleteCart(int id)
         {
             throw new NotImplementedException();
         }

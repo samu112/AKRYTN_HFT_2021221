@@ -27,7 +27,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangeCartsUser(int id, int newId);
 
-        void DeleteCart(int id);
+        bool DeleteCart(int id);
 
         //NON-CRUD
         IEnumerable<string> GetItemsInThisCart(int id);

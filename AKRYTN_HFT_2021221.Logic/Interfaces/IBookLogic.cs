@@ -27,7 +27,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangeBookPublisher(int id, int newid);
 
-        void DeleteBook(int id);
+        bool DeleteBook(int id);
 
         //NON-CRUD
         IEnumerable<string> GetBookPublisherName(int id);

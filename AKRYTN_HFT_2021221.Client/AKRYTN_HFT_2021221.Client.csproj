@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AKRYTN_HFT_2021221.Models\AKRYTN_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\AKRYTN_HFT_2021221.Test\AKRYTN_HFT_2021221.Test.csproj" />
   </ItemGroup>
 
 </Project>

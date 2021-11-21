@@ -24,7 +24,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangeUserEmail(int id, string newEmail);
 
-        void DeleteUser(int id);
+        bool DeleteUser(int id);
 
         //NON-CRUD
         IEnumerable<string> GetUserCarts(int id);

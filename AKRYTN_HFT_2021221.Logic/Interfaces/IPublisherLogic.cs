@@ -24,7 +24,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangePublisherEmail(int id, string newEmail);
 
-        void DeletePublisher(int id);
+        bool DeletePublisher(int id);
 
         //NON-CRUD
         IEnumerable<string> GetPublisherBooks(int id);

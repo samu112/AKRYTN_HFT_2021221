@@ -10,16 +10,20 @@ namespace AKRYTN_HFT_2021221.Logic
 {
     public class UserLogic : IUserLogic
     {
-        private readonly IUserRepository repo;
+        private IUserRepository userRepo;
+        private ICartRepository cartRepo;
+        private ICartItemRepository cartItemRepo;
 
         public UserLogic()
         {
-            this.repo = new UserRepository(new Data.BookStoreDbContext());
+            this.userRepo = new UserRepository(new Data.BookStoreDbContext());
         }
         //Constructor overload for testing.
-        public UserLogic(IUserRepository repo)
+        public UserLogic(IUserRepository userRepo, ICartRepository cartRepo, ICartItemRepository cartItemRepo)
         {
-            this.repo = repo;
+            this.userRepo = userRepo;
+            this.cartRepo = cartRepo;
+            this.cartItemRepo = cartItemRepo;
         }
 
         //NON-CRUD METHODS:
@@ -31,44 +35,44 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //CRUD METHODS:
 
-        public void DeleteUser(int id)
+        public bool DeleteUser(int id)
         {
             throw new NotImplementedException();
         }
 
         public User GetUser(int id)
         {
-            return this.repo.GetOneById(id);
+            return this.userRepo.GetOneById(id);
         }
 
         public IEnumerable<User> GetUsers()
         {
-            return this.repo.GetAll().ToList();
+            return this.userRepo.GetAll().ToList();
         }
 
         public void AddNewUser(User user)
         {
-            this.repo.Insert(user);
+            this.userRepo.Insert(user);
         }
 
         public void ChangeUserAddress(int id, string newAddress)
         {
-            this.repo.UpdateAddress(id, newAddress);
+            this.userRepo.UpdateAddress(id, newAddress);
         }
 
         public void ChangeUserEmail(int id, string newEmail)
         {
-            this.repo.UpdateEmail(id, newEmail);
+            this.userRepo.UpdateEmail(id, newEmail);
         }
 
         public void ChangeUserName(int id, string newName)
         {
-            this.repo.UpdateName(id, newName);
+            this.userRepo.UpdateName(id, newName);
         }
 
         public void ChangeUserRegDate(int id, DateTime newRegDate)
         {
-            this.repo.UpdateRegDate(id, newRegDate);
+            this.userRepo.UpdateRegDate(id, newRegDate);
         }
     }
 }

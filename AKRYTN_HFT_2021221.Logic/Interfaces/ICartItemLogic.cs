@@ -22,7 +22,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         void ChangeCartItemQuantity(int id, int newQuanity);
 
-        void DeleteCartItem(int id);
+        bool DeleteCartItem(int id);
 
         //NON-CRUD
         

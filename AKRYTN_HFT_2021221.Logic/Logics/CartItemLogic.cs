@@ -28,9 +28,9 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //CRUD METHODS:
 
-        public void DeleteCartItem(int id)
+        public bool DeleteCartItem(int id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public CartItem GetCartItem(int id)
