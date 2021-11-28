@@ -13,10 +13,10 @@ namespace AKRYTN_HFT_2021221.Logic
         private IPublisherRepository publisherRepo;
         private IBookRepository bookRepo;
 
-        public PublisherLogic()
-        {
-            this.publisherRepo = new PublisherRepository(new Data.BookStoreDbContext());
-        }
+        //public PublisherLogic()
+        //{
+        //    this.publisherRepo = new PublisherRepository(new Data.BookStoreDbContext());
+        //}
         //Constructor overload for testing.
         public PublisherLogic(IPublisherRepository publisherRepo, IBookRepository bookRepo)
         {

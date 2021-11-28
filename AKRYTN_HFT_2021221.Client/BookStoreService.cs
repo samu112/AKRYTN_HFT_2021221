@@ -16,6 +16,7 @@ namespace AKRYTN_HFT_2021221.Client
             Init(baseurl);
         }
 
+        //Connect to server
         private void Init(string baseurl)
         {
             client = new HttpClient();
@@ -35,6 +36,7 @@ namespace AKRYTN_HFT_2021221.Client
 
         }
 
+        //Get all from collection
         public List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
@@ -46,6 +48,7 @@ namespace AKRYTN_HFT_2021221.Client
             return items;
         }
 
+        //IDK WHAT THIS IS
         public T GetSingle<T>(string endpoint)
         {
             T item = default(T);
@@ -57,6 +60,7 @@ namespace AKRYTN_HFT_2021221.Client
             return item;
         }
 
+        //Get one by ID
         public T Get<T>(int id, string endpoint)
         {
             T item = default(T);
@@ -68,6 +72,7 @@ namespace AKRYTN_HFT_2021221.Client
             return item;
         }
 
+        //Add new
         public void Post<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
@@ -76,6 +81,7 @@ namespace AKRYTN_HFT_2021221.Client
             response.EnsureSuccessStatusCode();
         }
 
+        //Delete
         public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
@@ -85,6 +91,15 @@ namespace AKRYTN_HFT_2021221.Client
         }
 
         public void Put<T>(T item, string endpoint)
+        {
+            HttpResponseMessage response =
+                client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+
+
+            response.EnsureSuccessStatusCode();
+        }
+
+        public void Patch<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
                 client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();

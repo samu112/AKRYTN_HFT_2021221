@@ -14,10 +14,10 @@ namespace AKRYTN_HFT_2021221.Logic
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
 
-        public UserLogic()
-        {
-            this.userRepo = new UserRepository(new Data.BookStoreDbContext());
-        }
+        //public UserLogic()
+        //{
+        //    this.userRepo = new UserRepository(new Data.BookStoreDbContext());
+        //}
         //Constructor overload for testing.
         public UserLogic(IUserRepository userRepo, ICartRepository cartRepo, ICartItemRepository cartItemRepo)
         {

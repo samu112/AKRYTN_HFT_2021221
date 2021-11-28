@@ -53,11 +53,16 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
 
 
         //Change Book quantity
+        //Project help: https://www.c-sharpcorner.com/article/crud-operation-in-asp-net-core-5-web-api/
+        //API HELPS: 1; https://www.syncfusion.com/blogs/post/how-to-build-crud-rest-apis-with-asp-net-core-3-1-and-entity-framework-core-create-jwt-tokens-and-secure-apis.aspx
+        //           2; https://www.tutorialsteacher.com/webapi/consume-web-api-get-method-in-aspnet-mvc
+        //Patch usage: https://www.infoworld.com/article/3206264/how-to-perform-partial-updates-to-rest-web-api-resources.html
         // PUT /book
-        [HttpPatch]
-        public void Put([FromBody] int id, string value)
+        [HttpPut]
+        public void Put([FromBody] Book value)
         {
-            _BookLogic.ChangeBookTitle(id, value);
+            //_BookLogic.Update(value);
         }
+
     }
 }

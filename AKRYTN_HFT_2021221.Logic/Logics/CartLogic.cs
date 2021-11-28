@@ -13,10 +13,6 @@ namespace AKRYTN_HFT_2021221.Logic
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
 
-        public CartLogic()
-        {
-            this.cartRepo = new CartRepository(new Data.BookStoreDbContext());
-        }
         //Constructor overload for testing.
         public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo)
         {

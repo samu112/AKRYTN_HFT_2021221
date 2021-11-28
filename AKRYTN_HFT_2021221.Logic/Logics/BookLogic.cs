@@ -44,16 +44,20 @@ namespace AKRYTN_HFT_2021221.Logic
                 if (GetCartItemsWithThisBook.Count() != 0)
                 {
                     var GetCartsWithTheseCartItems = cartRepo.GetAll().Where(cart => GetCartItemsWithThisBook.Any(cartItem => cartItem.ci_cart_id == cart.c_id));
-                    foreach (Cart cart in GetCartsWithTheseCartItems)
+                    if (GetCartsWithTheseCartItems.Count() != 0)
                     {
-                        foreach (CartItem cartItem in GetCartItemsWithThisBook)
+                        foreach (Cart cart in GetCartsWithTheseCartItems)
                         {
-                            if (cartItem.ci_cart_id == cart.c_id)
+                            foreach (CartItem cartItem in GetCartItemsWithThisBook)
                             {
-                                cartItemRepo.Remove(cartItem.ci_id);
+                                if (cartItem.ci_cart_id == cart.c_id)
+                                {
+                                    cartItemRepo.Remove(cartItem.ci_id);
+                                }
                             }
                         }
                     }
+
                 }//If we found cartItem with this book in it
                 bookRepo.Remove(id);
                 //If the book wasn't in any cartItem
