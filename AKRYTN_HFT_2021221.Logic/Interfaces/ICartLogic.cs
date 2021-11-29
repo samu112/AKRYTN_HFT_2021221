@@ -17,13 +17,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         IEnumerable<Cart> GetCarts();
 
-        void ChangeCartcreditcardNumber(int id, string newCardNumber);
-
-        void ChangeCartBillingAddress(int id, string newAddress);
-
-        void ChangeCartDeliverStatus(int id, bool newStatus);
-
-        void ChangeCartsUser(int id, int newId);
+        void ChangeCart(int id, Cart newCart);
 
         bool DeleteCart(int id);
 

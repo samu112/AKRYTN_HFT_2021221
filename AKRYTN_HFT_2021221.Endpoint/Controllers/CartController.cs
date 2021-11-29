@@ -54,10 +54,10 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
 
         //Change Cart quantity
         // PUT /Cart
-        [HttpPatch]
-        public void Put([FromBody] int id, string value)
+        [HttpPut]
+        public void Put([FromBody] Cart value)
         {
-            _cartLogic.ChangeCartBillingAddress(id, value);
+            _cartLogic.ChangeCart(value.c_id, value);
         }
     }
 }

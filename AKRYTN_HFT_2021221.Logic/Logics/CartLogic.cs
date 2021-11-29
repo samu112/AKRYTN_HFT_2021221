@@ -65,24 +65,31 @@ namespace AKRYTN_HFT_2021221.Logic
             this.cartRepo.Insert(cart);
         }
 
-        public void ChangeCartBillingAddress(int id, string newAddress)
+        public void ChangeCart(int id, Cart newCart)
         {
-            this.cartRepo.UpdateBillingAddress(id, newAddress);
-        }
+            string newCreditcardNumber = newCart.c_creditcardNumber;
+            string newBillingAdress = newCart.c_billingAddress;
+            bool newDeliver = newCart.c_deliver;
+            int newUserId = newCart.c_user_id;
 
-        public void ChangeCartcreditcardNumber(int id, string newCardNumber)
-        {
-            this.cartRepo.UpdateCreditCard(id, newCardNumber);
-        }
+            Cart oldCart = this.cartRepo.GetOneById(id);
 
-        public void ChangeCartDeliverStatus(int id, bool newStatus)
-        {
-            this.cartRepo.UpdateDeliver(id, newStatus);
-        }
-
-        public void ChangeCartsUser(int id, int newId)
-        {
-            this.cartRepo.UpdateUserId(id, newId);
+            if (oldCart.c_creditcardNumber != newCreditcardNumber)
+            {
+                this.cartRepo.UpdateCreditCard(id, newCreditcardNumber);
+            }
+            if (oldCart.c_billingAddress != newBillingAdress)
+            {
+                this.cartRepo.UpdateBillingAddress(id, newBillingAdress);
+            }
+            if (oldCart.c_deliver != newDeliver)
+            {
+                this.cartRepo.UpdateDeliver(id, newDeliver);
+            }
+            if (oldCart.c_user_id != newUserId)
+            {
+                this.cartRepo.UpdateUserId(id, newUserId);
+            }
         }
     }
 }

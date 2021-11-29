@@ -52,19 +52,27 @@ namespace AKRYTN_HFT_2021221.Logic
             this.cartItemRepo.Insert(cartItem);
         }
 
-        public void ChangeCartItemBookId(int id, int newBookId)
+        public void ChangeCartItem(int id, CartItem newCartItem)
         {
-            this.cartItemRepo.UpdateBookId(id, newBookId);
+            int ci_book_id = newCartItem.ci_book_id;
+            int ci_cart_id = newCartItem.ci_cart_id;
+            int ci_quantity = newCartItem.ci_quantity;
+
+            CartItem oldCartItem = this.cartItemRepo.GetOneById(id);
+
+            if (oldCartItem.ci_book_id != ci_book_id)
+            {
+                this.cartItemRepo.UpdateBookId(id, ci_book_id);
+            }
+            if (oldCartItem.ci_cart_id != ci_cart_id)
+            {
+                this.cartItemRepo.UpdateCartId(id, ci_cart_id);
+            }
+            if (oldCartItem.ci_quantity != ci_quantity)
+            {
+                this.cartItemRepo.UpdateQuantity(id, ci_quantity);
+            }
         }
 
-        public void ChangeCartItemCartId(int id, int newCartId)
-        {
-            this.cartItemRepo.UpdateCartId(id, newCartId);
-        }
-
-        public void ChangeCartItemQuantity(int id, int newQuanity)
-        {
-            this.cartItemRepo.UpdateQuantity(id, newQuanity);
-        }
     }
 }

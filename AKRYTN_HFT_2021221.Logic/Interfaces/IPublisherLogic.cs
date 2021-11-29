@@ -16,13 +16,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         IEnumerable<Publisher> GetPublishers();
 
-        void ChangePublisherName(int id, string newName);
-
-        void ChangePublisherAddress(int id, string newAddress);
-
-        void ChangePublisherWebsite(int id, string newWebsite);
-
-        void ChangePublisherEmail(int id, string newEmail);
+        void ChangePublisher(int id, Publisher publisher);
 
         bool DeletePublisher(int id);
 

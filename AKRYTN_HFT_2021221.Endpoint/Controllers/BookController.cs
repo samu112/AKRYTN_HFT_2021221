@@ -61,7 +61,7 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         [HttpPut]
         public void Put([FromBody] Book value)
         {
-            //_BookLogic.Update(value);
+            _BookLogic.ChangeBook(value.b_id, value);
         }
 
     }

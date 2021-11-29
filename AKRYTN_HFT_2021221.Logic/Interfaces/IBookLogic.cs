@@ -17,15 +17,7 @@ namespace AKRYTN_HFT_2021221.Logic
    
         IEnumerable<Book> GetBooks();
 
-        void ChangeBookTitle(int id, string newTitle);
-
-        void ChangeBookAuthor(int id, string newAuthor);
-
-        void ChangeBookPrice(int id, int newPrice);
-
-        void ChangeBookReleaseDate(int id, DateTime newDate);
-
-        void ChangeBookPublisher(int id, int newid);
+        void ChangeBook(int id, Book book);
 
         bool DeleteBook(int id);
 

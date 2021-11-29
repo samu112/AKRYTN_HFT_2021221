@@ -13,10 +13,6 @@ namespace AKRYTN_HFT_2021221.Logic
         private IPublisherRepository publisherRepo;
         private IBookRepository bookRepo;
 
-        //public PublisherLogic()
-        //{
-        //    this.publisherRepo = new PublisherRepository(new Data.BookStoreDbContext());
-        //}
         //Constructor overload for testing.
         public PublisherLogic(IPublisherRepository publisherRepo, IBookRepository bookRepo)
         {
@@ -70,24 +66,32 @@ namespace AKRYTN_HFT_2021221.Logic
             this.publisherRepo.Insert(publisher);
         }
 
-        public void ChangePublisherAddress(int id, string newAddress)
+        public void ChangePublisher(int id, Publisher publisher)
         {
-            this.publisherRepo.UpdateAddress(id, newAddress);
+            string newName = publisher.p_name;
+            string newAdress = publisher.p_address;
+            string newWebsite = publisher.p_website;
+            string newEmail = publisher.p_email;
+
+            Publisher oldPublisher = this.publisherRepo.GetOneById(id);
+
+            if (oldPublisher.p_name != newName)
+            {
+                this.publisherRepo.UpdateName(id, newName);
+            }
+            if (oldPublisher.p_address != newAdress)
+            {
+                this.publisherRepo.UpdateAddress(id, newAdress);
+            }
+            if (oldPublisher.p_website != newWebsite)
+            {
+                this.publisherRepo.UpdateWebsite(id, newWebsite);
+            }
+            if (oldPublisher.p_email != newEmail)
+            {
+                this.publisherRepo.UpdateEmail(id, newEmail);
+            }
         }
 
-        public void ChangePublisherEmail(int id, string newEmail)
-        {
-            this.publisherRepo.UpdateEmail(id, newEmail);
-        }
-
-        public void ChangePublisherName(int id, string newName)
-        {
-            this.publisherRepo.UpdateName(id, newName);
-        }
-
-        public void ChangePublisherWebsite(int id, string newWebsite)
-        {
-            this.publisherRepo.UpdateWebsite(id, newWebsite);
-        }
     }
 }

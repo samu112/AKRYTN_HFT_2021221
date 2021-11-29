@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Models
@@ -21,6 +23,8 @@ namespace AKRYTN_HFT_2021221.Models
         [ForeignKey(nameof(Book))]
         public int ci_book_id { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual Book Book { get; set; }
 
@@ -28,6 +32,8 @@ namespace AKRYTN_HFT_2021221.Models
         [ForeignKey(nameof(Cart))]
         public int ci_cart_id { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual Cart Cart { get; set; }
 

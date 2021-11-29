@@ -14,10 +14,6 @@ namespace AKRYTN_HFT_2021221.Logic
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
 
-        //public UserLogic()
-        //{
-        //    this.userRepo = new UserRepository(new Data.BookStoreDbContext());
-        //}
         //Constructor overload for testing.
         public UserLogic(IUserRepository userRepo, ICartRepository cartRepo, ICartItemRepository cartItemRepo)
         {
@@ -73,24 +69,31 @@ namespace AKRYTN_HFT_2021221.Logic
             this.userRepo.Insert(user);
         }
 
-        public void ChangeUserAddress(int id, string newAddress)
+        public void ChangeUser(int id, User user)
         {
-            this.userRepo.UpdateAddress(id, newAddress);
-        }
+            string newName = user.u_name;
+            DateTime newRegDate = user.u_regDate;
+            string newAdress = user.u_address;
+            string newEmail = user.u_email;
 
-        public void ChangeUserEmail(int id, string newEmail)
-        {
-            this.userRepo.UpdateEmail(id, newEmail);
-        }
+            User oldUser = this.userRepo.GetOneById(id);
 
-        public void ChangeUserName(int id, string newName)
-        {
-            this.userRepo.UpdateName(id, newName);
-        }
-
-        public void ChangeUserRegDate(int id, DateTime newRegDate)
-        {
-            this.userRepo.UpdateRegDate(id, newRegDate);
+            if (oldUser.u_name != newName)
+            {
+                this.userRepo.UpdateName(id, newName);
+            }
+            if (oldUser.u_regDate != newRegDate)
+            {
+                this.userRepo.UpdateRegDate(id, newRegDate);
+            }
+            if (oldUser.u_address != newAdress)
+            {
+                this.userRepo.UpdateAddress(id, newAdress);
+            }
+            if (oldUser.u_email != newEmail)
+            {
+                this.userRepo.UpdateEmail(id, newEmail);
+            }
         }
     }
 }

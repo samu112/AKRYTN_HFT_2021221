@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Models
@@ -27,9 +29,13 @@ namespace AKRYTN_HFT_2021221.Models
         [ForeignKey(nameof(User))]
         public int c_user_id { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual User User { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual ICollection<CartItem> CartItem { get; set; }
 

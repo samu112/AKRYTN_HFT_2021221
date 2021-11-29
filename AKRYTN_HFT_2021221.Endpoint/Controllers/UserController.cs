@@ -55,10 +55,10 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         //Change User quantity
         //
         // PUT /User
-        [HttpPatch]
-        public void Put([FromBody] int id, string value)
+        [HttpPut]
+        public void Put([FromBody] User value)
         {
-            _userLogic.ChangeUserName(id, value);
+            _userLogic.ChangeUser(value.u_id, value);
         }
     }
 }

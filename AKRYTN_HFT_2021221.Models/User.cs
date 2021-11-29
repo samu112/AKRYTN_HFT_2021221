@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace AKRYTN_HFT_2021221.Models
 {
@@ -27,7 +29,8 @@ namespace AKRYTN_HFT_2021221.Models
         [MaxLength(320)]
         public string u_email { get; set; } // Stores the email address of the user
 
-
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual Cart Cart { get; set; }
 

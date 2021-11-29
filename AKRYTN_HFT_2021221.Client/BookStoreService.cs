@@ -98,14 +98,5 @@ namespace AKRYTN_HFT_2021221.Client
 
             response.EnsureSuccessStatusCode();
         }
-
-        public void Patch<T>(T item, string endpoint)
-        {
-            HttpResponseMessage response =
-                client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
-
-
-            response.EnsureSuccessStatusCode();
-        }
     }
 }

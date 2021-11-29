@@ -16,11 +16,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         IEnumerable<CartItem> GetAllCartItems();
 
-        void ChangeCartItemBookId(int id, int newBookId);
-
-        void ChangeCartItemCartId(int id, int newCartId);
-
-        void ChangeCartItemQuantity(int id, int newQuanity);
+        void ChangeCartItem(int id, CartItem newCartItem);
 
         bool DeleteCartItem(int id);
 

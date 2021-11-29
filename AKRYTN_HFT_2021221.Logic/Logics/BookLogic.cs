@@ -14,10 +14,6 @@ namespace AKRYTN_HFT_2021221.Logic
         private ICartItemRepository cartItemRepo;
         private ICartRepository cartRepo;
 
-        public BookLogic()
-        {
-            this.bookRepo = new BookRepository(new Data.BookStoreDbContext());
-        }
         //Constructor overload for testing.
         public BookLogic(IBookRepository bookRepo, ICartItemRepository cartItemRepo, ICartRepository cartRepo)
         {
@@ -36,7 +32,7 @@ namespace AKRYTN_HFT_2021221.Logic
         //CRUD METHODS:
 
         public bool DeleteBook(int id)
-        {    
+        {
             if (bookRepo.GetAll().Any(book => book.b_id == id))
             {
                 //Find all cartItems with this book, and find the carts that have these cartItems
@@ -84,29 +80,36 @@ namespace AKRYTN_HFT_2021221.Logic
             this.bookRepo.Insert(book);
         }
 
-        public void ChangeBookAuthor(int id, string newAuthor)
+        public void ChangeBook(int id, Book book)
         {
-            this.bookRepo.UpdateAuthor(id, newAuthor);
-        }
+            string newTitle = book.b_title;
+            string newAuthor = book.b_author;
+            double newPrice = book.b_price;
+            DateTime newRelease = book.b_releaseDate;
+            int newPublisher = book.b_publisher_id;
 
-        public void ChangeBookTitle(int id, string newTitle)
-        {
-            this.bookRepo.UpdateTitle(id, newTitle);
-        }
+            Book oldBook = this.bookRepo.GetOneById(id);
 
-        public void ChangeBookPrice(int id, int newPrice)
-        {
-            this.bookRepo.UpdatePrice(id, newPrice);
-        }
-
-        public void ChangeBookPublisher(int id, int newid)
-        {
-            this.bookRepo.UpdatePublisherid(id, newid);
-        }
-
-        public void ChangeBookReleaseDate(int id, DateTime newDate)
-        {
-            this.bookRepo.UpdateReleaseDate(id, newDate);
+            if (oldBook.b_title != newTitle)
+            {
+                this.bookRepo.UpdateTitle(id, newTitle);
+            }
+            if (oldBook.b_author != newAuthor)
+            {
+                this.bookRepo.UpdateAuthor(id, newAuthor);
+            }
+            if (oldBook.b_price != newPrice)
+            {
+                this.bookRepo.UpdatePrice(id, newPrice);
+            }
+            if (oldBook.b_releaseDate != newRelease)
+            {
+                this.bookRepo.UpdateReleaseDate(id, newRelease);
+            }
+            if (oldBook.b_publisher_id != newPublisher)
+            {
+                this.bookRepo.UpdatePublisherid(id, newPublisher);
+            }
         }
     }
 }

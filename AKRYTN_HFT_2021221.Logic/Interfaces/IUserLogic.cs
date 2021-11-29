@@ -16,13 +16,7 @@ namespace AKRYTN_HFT_2021221.Logic
 
         IEnumerable<User> GetUsers();
 
-        void ChangeUserName(int id, string newName);
-
-        void ChangeUserRegDate(int id, DateTime newRegDate);
-
-        void ChangeUserAddress(int id, string newAddress);
-
-        void ChangeUserEmail(int id, string newEmail);
+        void ChangeUser(int id, User user);
 
         bool DeleteUser(int id);
 

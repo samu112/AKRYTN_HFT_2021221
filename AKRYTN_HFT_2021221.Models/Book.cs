@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AKRYTN_HFT_2021221.Models
@@ -30,11 +32,15 @@ namespace AKRYTN_HFT_2021221.Models
 
         // FK: Id of the publisher
         [ForeignKey(nameof(Publisher))]
-        public int? b_publisher_id { get; set; }
+        public int b_publisher_id { get; set; }
 
+        [JsonIgnore] // Needs because of the circular reference. Source: https://stackoverflow.com/questions/7397207/json-net-error-self-referencing-loop-detected-for-type
+        [IgnoreDataMember]
         [NotMapped]
         public virtual Publisher Publisher { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         [NotMapped]
         public virtual ICollection<CartItem> CartItem { get; set; }
     }

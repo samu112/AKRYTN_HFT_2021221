@@ -54,10 +54,10 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
 
         //Change Publisher quantity
         // PUT /Publisher
-        [HttpPatch]
-        public void Put([FromBody] int id, string value)
+        [HttpPut]
+        public void Put([FromBody] Publisher value)
         {
-            _PublisherLogic.ChangePublisherName(id, value);
+            _PublisherLogic.ChangePublisher(value.p_id, value);
         }
     }
 }
