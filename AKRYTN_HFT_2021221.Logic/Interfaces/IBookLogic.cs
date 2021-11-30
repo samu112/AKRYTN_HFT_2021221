@@ -22,7 +22,9 @@ namespace AKRYTN_HFT_2021221.Logic
         bool DeleteBook(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetBookPublisherName(int id);
+
+        //Get publisher of the book
+        Publisher GetBookPublisher(int id);
 
     }
 }

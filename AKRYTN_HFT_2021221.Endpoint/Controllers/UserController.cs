@@ -19,6 +19,10 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _userLogic = userLogic;
         }
 
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
         // GET: /User
         [HttpGet]
         public IEnumerable<User> Get()
@@ -47,18 +51,31 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _userLogic.DeleteUser(id);
         }
 
-        //--------------------------------------------------------------------------------------
-        //Updates
-        //--------------------------------------------------------------------------------------
-
-
-        //Change User quantity
-        //
         // PUT /User
         [HttpPut]
         public void Put([FromBody] User value)
         {
             _userLogic.ChangeUser(value.u_id, value);
         }
+
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+        //GET /User/1/cart
+        [HttpGet("{id:int}/cart")]
+        public Cart GetUserCart(int id)
+        {
+            return _userLogic.GetUserCart(id);
+        }
+
+        //GET /User/1/cart/cartItems
+        [HttpGet("{id:int}/cart/cartItems")]
+        public IEnumerable<CartItem> GetUserCartItems(int id)
+        {
+            return _userLogic.GetUserCartItems(id);
+        }
+
     }
 }

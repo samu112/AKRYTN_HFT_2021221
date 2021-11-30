@@ -12,21 +12,52 @@ namespace AKRYTN_HFT_2021221.Logic
     {
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
+        private IBookRepository bookRepo;
 
         //Constructor overload for testing.
-        public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo)
+        public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo, IBookRepository bookRepo)
         {
             this.cartRepo = cartRepo;
             this.cartItemRepo = cartItemRepo;
+            this.bookRepo = bookRepo;
         }
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetItemsInThisCart(int id)
+        //Get cartItems that belong to this cart
+        public IEnumerable<CartItem> GetCartItemsInThisCart(int id)
         {
-            throw new NotImplementedException();
+            var cartItems = cartItemRepo.GetAll().Where(cartItem => cartItem.ci_cart_id == id);
+            return cartItems.ToList();
         }
-        
+
+        //Get the amount of money that is needed to pay for the cart content
+        public double GetCartPrice(int id)
+        {
+            var cartItems = GetCartItemsInThisCart(id);
+            var books = bookRepo.GetAll();
+
+            var price = (from cartitems in cartItems
+                             from book in books
+                             where cartitems.ci_book_id == book.b_id
+                             select cartitems.ci_quantity * book.b_price).Sum();
+            return price;
+        }
+
+        //Get books that belong to this cart
+        public IEnumerable<Book> GetBooksInThisCart(int id)
+        {
+            var cartItems = GetCartItemsInThisCart(id);
+
+            var books = from cartItem in cartItems
+                        select bookRepo.GetOneById(cartItem.ci_book_id);
+
+            return books;
+        }
+
+
+
+
         //CRUD METHODS:
 
         public bool DeleteCart(int id)

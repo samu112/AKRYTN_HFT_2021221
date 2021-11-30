@@ -24,10 +24,25 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetUserCarts(int id)
+        //Get the cart of the user
+        public Cart GetUserCart(int id)
         {
-            throw new NotImplementedException();
+            var carts = cartRepo.GetAll();
+            Cart cart = carts.Where(cart => cart.c_user_id == id).FirstOrDefault();
+            return cart;
         }
+
+        //Get user's cart items
+        public IEnumerable<CartItem> GetUserCartItems(int id)
+        {
+            Cart cart = GetUserCart(id);
+            var allCartItems = cartItemRepo.GetAll();
+            var cartItems = from cartItem in allCartItems
+                            where cartItem.ci_cart_id == cart.c_id
+                            select cartItem;
+            return cartItems;
+        }
+
 
         //CRUD METHODS:
 

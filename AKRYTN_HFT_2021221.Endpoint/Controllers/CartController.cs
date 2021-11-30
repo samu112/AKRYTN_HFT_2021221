@@ -19,6 +19,11 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _cartLogic = cartLogic;
         }
 
+
+        //------------------------------------------------------------
+        //CRUD:
+        //------------------------------------------------------------
+
         // GET: /Cart
         [HttpGet]
         public IEnumerable<Cart> Get()
@@ -47,17 +52,38 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _cartLogic.DeleteCart(id);
         }
 
-        //--------------------------------------------------------------------------------------
-        //Updates
-        //--------------------------------------------------------------------------------------
-
-
         //Change Cart quantity
         // PUT /Cart
         [HttpPut]
         public void Put([FromBody] Cart value)
         {
             _cartLogic.ChangeCart(value.c_id, value);
+        }
+
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+        //GET /Cart/1/Carts
+        [HttpGet("{id:int}/Cartitems")]
+        public IEnumerable<CartItem> GetCartItemsInThisCart(int id)
+        {
+           return _cartLogic.GetCartItemsInThisCart(id);
+        }
+
+        //GET /Cart/1/Price
+        [HttpGet("{id:int}/Price")]
+        public double GetCartPrice(int id)
+        {
+            return _cartLogic.GetCartPrice(id);
+        }
+
+        //GET /Cart/1/Books
+        [HttpGet("{id:int}/Books")]
+        public IEnumerable<Book> GetBooksInThisCart(int id)
+        {
+            return _cartLogic.GetBooksInThisCart(id);
         }
     }
 }

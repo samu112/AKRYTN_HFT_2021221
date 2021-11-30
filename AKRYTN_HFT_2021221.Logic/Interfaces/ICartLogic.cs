@@ -22,6 +22,14 @@ namespace AKRYTN_HFT_2021221.Logic
         bool DeleteCart(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetItemsInThisCart(int id);
+
+        //Get cartItems that belong to this cart
+        IEnumerable<CartItem> GetCartItemsInThisCart(int id);
+
+        //Get the amount of money that is needed to pay for the cart content
+        double GetCartPrice(int id);
+
+        //Get books that belong to this cart
+        IEnumerable<Book> GetBooksInThisCart(int id);
     }
 }

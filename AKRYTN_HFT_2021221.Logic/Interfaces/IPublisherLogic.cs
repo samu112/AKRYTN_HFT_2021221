@@ -21,6 +21,8 @@ namespace AKRYTN_HFT_2021221.Logic
         bool DeletePublisher(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetPublisherBooks(int id);
+
+        //Get the books that were released by the given publisher
+        IEnumerable<Book> GetPublisherBooks(int id);
     }
 }

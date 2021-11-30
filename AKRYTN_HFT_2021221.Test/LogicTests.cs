@@ -9,9 +9,21 @@ using NUnit.Framework;
 
 namespace AKRYTN_HFT_2021221_Test
 {
+
     [TestFixture]
     public class LogicTests
     {
+        private Mock<IBookRepository> mockedBookRepo = new Mock<IBookRepository>();
+        private Mock<ICartItemRepository> mockedCartItemRepo = new Mock<ICartItemRepository>();
+        private Mock<ICartRepository> mockedCartRepo = new Mock<ICartRepository>();
+        private Mock<IPublisherRepository> mockedPublisherRepo = new Mock<IPublisherRepository>();
+
+        private void TestData()
+        {
+
+        }
+
+
         [Test]
         public void TestGetBook()
         {
@@ -19,8 +31,9 @@ namespace AKRYTN_HFT_2021221_Test
             Mock<IBookRepository> mockedBookRepo = new Mock<IBookRepository>();
             Mock<ICartItemRepository> mockedCartItemRepo = new Mock<ICartItemRepository>();
             Mock<ICartRepository> mockedCartRepo = new Mock<ICartRepository>();
+            Mock<IPublisherRepository> mockedPublisherRepo = new Mock<IPublisherRepository>();
 
-            BookLogic testlogic = new BookLogic(mockedBookRepo.Object, mockedCartItemRepo.Object, mockedCartRepo.Object);
+            BookLogic testlogic = new BookLogic(mockedBookRepo.Object, mockedCartItemRepo.Object, mockedCartRepo.Object, mockedPublisherRepo.Object);
 
             int id = 1;
 
@@ -93,6 +106,40 @@ namespace AKRYTN_HFT_2021221_Test
         }
 
         [Test]
+        public void TestCartGetBooksLogic()
+        {
+            //Arrange
+            Mock<IBookRepository> bookRepo = new Mock<IBookRepository>();
+            Mock<ICartRepository> cartRepo = new Mock<ICartRepository>();
+            Mock<ICartItemRepository> cartItemRepo = new Mock<ICartItemRepository>();
+            IEnumerable<Book> bookList = new List<Book>()
+            {
+                new Book() { b_id = 1, b_title = "Watch of mystery", b_author = "Arden Wolfwood", b_price = 1000, b_releaseDate = DateTime.Parse("1983. 06. 09. 0:00:00"), b_publisher_id = 1},
+                new Book() { b_id = 2, b_title = "Turtles and heroes", b_author = "Brooke Breathless", b_price = 1900, b_releaseDate = DateTime.Parse("2007. 08. 28. 0:00:00"), b_publisher_id = 2},
+                new Book() { b_id = 3, b_title = "Songs in the catacombs", b_author = "Xander Marquis", b_price = 3800, b_releaseDate = DateTime.Parse("2019. 07. 21. 0:00:00"), b_publisher_id = 1},
+            };
+            IEnumerable<Cart> CartList = new List<Cart>()
+            {
+                new Cart() { c_id = 1, c_billingAddress = "2041 Douglas Avenue, Brewton AL 36426", c_creditcardNumber = "374602027947747", c_deliver = false, c_user_id = 2 },
+                new Cart() { c_id = 2, c_billingAddress = "85 Crooked Hill Road, Commack NY 11725", c_creditcardNumber = "374602027947747", c_deliver = false, c_user_id = 2 },
+                new Cart() { c_id = 3, c_billingAddress = "3176 South Eufaula Avenue, Eufaula AL 36027", c_creditcardNumber = "2720059742859433", c_deliver = true, c_user_id = 1 }
+            };
+            IEnumerable<CartItem> cartItemList = new List<CartItem>()
+            {
+                new CartItem() { ci_id = 1, ci_book_id = 2, ci_quantity = 3, ci_cart_id = 1 },
+                new CartItem() { ci_id = 2, ci_book_id = 1, ci_quantity = 3, ci_cart_id = 2 },
+                new CartItem() { ci_id = 3, ci_book_id = 1, ci_quantity = 2, ci_cart_id = 1 }
+            };
+            bookRepo.Setup(repo => repo.GetAll()).Returns(bookList.AsQueryable());
+            cartRepo.Setup(repo => repo.GetAll()).Returns(CartList.AsQueryable());
+            cartItemRepo.Setup(repo => repo.GetAll()).Returns(cartItemList.AsQueryable());
+            CartLogic logic = new CartLogic(cartRepo.Object, cartItemRepo.Object, bookRepo.Object );
+
+            var test=logic.GetBooksInThisCart(1);
+            Console.ReadKey();
+        }
+
+        [Test]
         public void TestDeleteBook()
         {
             //What should I test?
@@ -100,6 +147,7 @@ namespace AKRYTN_HFT_2021221_Test
             Mock<IBookRepository> bookRepo = new Mock<IBookRepository>();
             Mock<ICartRepository> cartRepo = new Mock<ICartRepository>();
             Mock<ICartItemRepository> cartItemRepo = new Mock<ICartItemRepository>();
+            Mock<IPublisherRepository> publisherRepo = new Mock<IPublisherRepository>();
 
             List<Book> bookList = new List<Book>()
             {
@@ -121,7 +169,7 @@ namespace AKRYTN_HFT_2021221_Test
             };
 
             bookRepo.Setup(repo => repo.Remove(It.IsAny<int>()));
-            BookLogic logic = new BookLogic(bookRepo.Object, cartItemRepo.Object, cartRepo.Object);
+            BookLogic logic = new BookLogic(bookRepo.Object, cartItemRepo.Object, cartRepo.Object, publisherRepo.Object);
 
             //Act
             logic.DeleteBook(3);
@@ -130,6 +178,7 @@ namespace AKRYTN_HFT_2021221_Test
             bookRepo.Verify(repo => repo.Remove(3), Times.Once);
 
         }
+        
 
     }
 }

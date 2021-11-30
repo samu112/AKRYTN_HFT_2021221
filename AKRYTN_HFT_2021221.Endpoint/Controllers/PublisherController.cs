@@ -19,6 +19,10 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _PublisherLogic = publisherLogic;
         }
 
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
         // GET: /Publisher
         [HttpGet]
         public IEnumerable<Publisher> Get()
@@ -47,17 +51,23 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _PublisherLogic.DeletePublisher(id);
         }
 
-        //--------------------------------------------------------------------------------------
-        //Updates
-        //--------------------------------------------------------------------------------------
-
-
-        //Change Publisher quantity
         // PUT /Publisher
         [HttpPut]
         public void Put([FromBody] Publisher value)
         {
             _PublisherLogic.ChangePublisher(value.p_id, value);
+        }
+
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+        // GET /Publisher/5/books
+        [HttpGet("{id:int}/books")]
+        public IEnumerable<Book> GetPublisherBooks(int id)
+        {
+            return _PublisherLogic.GetPublisherBooks(id);
         }
     }
 }

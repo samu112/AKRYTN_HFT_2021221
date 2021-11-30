@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AKRYTN_HFT_2021221.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -36,6 +37,10 @@ namespace AKRYTN_HFT_2021221.Client
 
         }
 
+        //------------------------------------------------------------
+        //CRUD METHODS:
+        //------------------------------------------------------------
+
         //Get all from collection
         public List<T> Get<T>(string endpoint)
         {
@@ -48,7 +53,7 @@ namespace AKRYTN_HFT_2021221.Client
             return items;
         }
 
-        //IDK WHAT THIS IS
+        //Get all from collection into one collection
         public T GetSingle<T>(string endpoint)
         {
             T item = default(T);
@@ -81,7 +86,7 @@ namespace AKRYTN_HFT_2021221.Client
             response.EnsureSuccessStatusCode();
         }
 
-        //Delete
+        //Delete by ID
         public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
@@ -90,6 +95,7 @@ namespace AKRYTN_HFT_2021221.Client
             response.EnsureSuccessStatusCode();
         }
 
+        //Update data
         public void Put<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
@@ -98,5 +104,106 @@ namespace AKRYTN_HFT_2021221.Client
 
             response.EnsureSuccessStatusCode();
         }
+
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+            //PublisherLogic methods:
+
+        //Get the books that were released by the given publisher
+        public IEnumerable<Book> GetPublisherBooks(int id)
+        {
+            IEnumerable<Book> item = default(IEnumerable<Book>);
+            HttpResponseMessage response = client.GetAsync("publisher" + "/" + id.ToString() + "/books").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IEnumerable<Book>>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+            //BookLogic methods:
+
+        //Get Publisher
+        public Publisher GetPublisher(int id)
+        {
+            Publisher item = default(Publisher);
+            HttpResponseMessage response = client.GetAsync("book" + "/" + id.ToString() + "/publisher").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<Publisher>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+            //CartLogic methods:
+
+        //Get cartItems that belong to this cart
+        public IEnumerable<CartItem> GetCartItemsInThisCart(int id)
+        {
+            IEnumerable<CartItem> item = default(IEnumerable<CartItem>);
+            HttpResponseMessage response = client.GetAsync("cart" + "/" + id.ToString() + "/Cartitems").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IEnumerable<CartItem>>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+        //Get the amount of money that is needed to pay for the cart content
+        public double GetCartPrice(int id)
+        {
+            double item = default(double);
+            HttpResponseMessage response = client.GetAsync("cart" + "/" + id.ToString() + "/Price").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<double>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+        //Get books that belong to this cart
+        public IEnumerable<Book> GetBooksInThisCart(int id)
+        {
+            IEnumerable<Book> item = default(IEnumerable<Book>);
+            HttpResponseMessage response = client.GetAsync("cart" + "/" + id.ToString() + "/Books").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IEnumerable<Book>>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+            //UserLogic methods:
+
+        //Get the cart of the user
+        public Cart GetUserCart(int id)
+        {
+            Cart item = default(Cart);
+            HttpResponseMessage response = client.GetAsync("user" + "/" + id.ToString() + "/cart").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<Cart>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+        //Get user's cart items
+        public IEnumerable<CartItem> GetUserCartItems(int id)
+        {
+            IEnumerable<CartItem> item = default(IEnumerable<CartItem>);
+            HttpResponseMessage response = client.GetAsync("user" + "/" + id.ToString() + "/cart/cartItems").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IEnumerable<CartItem>>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
+
+
+
+
     }
 }

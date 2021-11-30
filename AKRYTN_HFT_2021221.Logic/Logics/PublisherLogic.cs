@@ -22,9 +22,14 @@ namespace AKRYTN_HFT_2021221.Logic
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetPublisherBooks(int id)
+        //Get the books that were released by the given publisher
+        public IEnumerable<Book> GetPublisherBooks(int id)
         {
-            throw new NotImplementedException();
+            var books = bookRepo.GetAll();
+            var pBooks = from book in books
+                         where book.b_publisher_id == id
+                         select book;
+            return pBooks;
         }
 
         //CRUD METHODS:

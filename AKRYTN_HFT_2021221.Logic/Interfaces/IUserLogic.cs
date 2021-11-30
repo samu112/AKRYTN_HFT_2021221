@@ -21,6 +21,11 @@ namespace AKRYTN_HFT_2021221.Logic
         bool DeleteUser(int id);
 
         //NON-CRUD
-        IEnumerable<string> GetUserCarts(int id);
+
+        //Get the cart of the user
+        Cart GetUserCart(int id);
+
+        //Get user's cart items
+        IEnumerable<CartItem> GetUserCartItems(int id);
     }
 }

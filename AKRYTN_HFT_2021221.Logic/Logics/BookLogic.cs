@@ -13,20 +13,25 @@ namespace AKRYTN_HFT_2021221.Logic
         private IBookRepository bookRepo;
         private ICartItemRepository cartItemRepo;
         private ICartRepository cartRepo;
+        private IPublisherRepository publisherRepo;
 
         //Constructor overload for testing.
-        public BookLogic(IBookRepository bookRepo, ICartItemRepository cartItemRepo, ICartRepository cartRepo)
+        public BookLogic(IBookRepository bookRepo, ICartItemRepository cartItemRepo, ICartRepository cartRepo, IPublisherRepository publisherRepo)
         {
             this.bookRepo = bookRepo;
             this.cartItemRepo = cartItemRepo;
             this.cartRepo = cartRepo;
+            this.publisherRepo = publisherRepo;
         }
 
         //NON-CRUD METHODS:
 
-        public IEnumerable<string> GetBookPublisherName(int id)
+        //Get publisher of the book
+        public Publisher GetBookPublisher(int id)
         {
-            throw new NotImplementedException();
+           Book book = bookRepo.GetOneById(id);
+           Publisher publisher = publisherRepo.GetOneById(book.b_publisher_id);
+           return publisher;
         }
 
         //CRUD METHODS:

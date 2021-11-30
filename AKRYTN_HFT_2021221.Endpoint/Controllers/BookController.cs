@@ -19,6 +19,11 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _BookLogic = bookLogic;
         }
 
+
+        //------------------------------------------------------------
+        //CRUD:
+        //------------------------------------------------------------
+
         // GET: /Book
         [HttpGet]
         public IEnumerable<Book> Get()
@@ -47,12 +52,7 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             _BookLogic.DeleteBook(id);
         }
 
-        //--------------------------------------------------------------------------------------
-        //Updates
-        //--------------------------------------------------------------------------------------
-
-
-        //Change Book quantity
+        //Change Book
         //Project help: https://www.c-sharpcorner.com/article/crud-operation-in-asp-net-core-5-web-api/
         //API HELPS: 1; https://www.syncfusion.com/blogs/post/how-to-build-crud-rest-apis-with-asp-net-core-3-1-and-entity-framework-core-create-jwt-tokens-and-secure-apis.aspx
         //           2; https://www.tutorialsteacher.com/webapi/consume-web-api-get-method-in-aspnet-mvc
@@ -62,6 +62,18 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Book value)
         {
             _BookLogic.ChangeBook(value.b_id, value);
+        }
+
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+        //GET /Book/1/publisher
+        [HttpGet("{id:int}/publisher")] 
+        public Publisher GetBookPublisher(int id)
+        {
+            return _BookLogic.GetBookPublisher(id);
         }
 
     }

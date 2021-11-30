@@ -1,5 +1,6 @@
 ﻿using AKRYTN_HFT_2021221.Models;
 using System;
+using System.Collections.Generic;
 
 namespace AKRYTN_HFT_2021221.Client
 {
@@ -15,6 +16,12 @@ namespace AKRYTN_HFT_2021221.Client
             System.Threading.Thread.Sleep(8000);
 
             BookStoreService store = new BookStoreService("http://localhost:8921");
+
+            var test = store.GetUserCartItems(1);
+            Console.ReadKey();
+
+            Publisher publisher = store.GetPublisher(1);
+            Console.WriteLine($"Book Publisher Name: {publisher.p_name}");
 
             var books = store.Get<Book>("book");
             Console.WriteLine("----------------\nBooks:\n----------------");
