@@ -13,13 +13,15 @@ namespace AKRYTN_HFT_2021221.Logic
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
         private IBookRepository bookRepo;
+        private IUserRepository userRepo;
 
         //Constructor overload for testing.
-        public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo, IBookRepository bookRepo)
+        public CartLogic(ICartRepository cartRepo, ICartItemRepository cartItemRepo, IBookRepository bookRepo, IUserRepository userRepo)
         {
             this.cartRepo = cartRepo;
             this.cartItemRepo = cartItemRepo;
             this.bookRepo = bookRepo;
+            this.userRepo = userRepo;
         }
 
         //NON-CRUD METHODS:
@@ -93,6 +95,38 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public void AddNewCart(Cart cart)
         {
+            Cart idlessCart = new Cart();
+
+            //CreditCardNumber check
+            if (!string.IsNullOrEmpty(cart.c_creditcardNumber) && !string.IsNullOrWhiteSpace(cart.c_creditcardNumber))
+            {
+                idlessCart.c_creditcardNumber = cart.c_creditcardNumber;
+            }
+            else { throw new ArgumentNullException("Cart creditcard number must have a value!"); }
+            //BillingAddress check
+            if (!string.IsNullOrEmpty(cart.c_billingAddress) && !string.IsNullOrWhiteSpace(cart.c_billingAddress))
+            {
+                idlessCart.c_billingAddress = cart.c_billingAddress;
+            }
+            else { throw new ArgumentNullException("Cart billing address must have a value!"); }
+            //Deliver check
+            try { cart.c_deliver = idlessCart.c_deliver; }
+            catch (Exception) { throw new ArgumentNullException("Cart deliver status must have a value!"); }
+            //UserId check
+            if (!string.IsNullOrEmpty(cart.c_user_id.ToString()))
+            {
+                var allUserss = userRepo.GetAll();
+                var user = allUserss.Where(user => user.u_id == cart.c_user_id);
+                if (user.Count() == 0)
+                {
+                    throw new ArgumentException($"There is no user with id: {cart.c_user_id}");
+                }
+                else { idlessCart.c_user_id = cart.c_user_id; }
+
+            }
+            else { throw new ArgumentNullException("Cart user id must have a value"); }
+
+            //Succesfull addition
             this.cartRepo.Insert(cart);
         }
 

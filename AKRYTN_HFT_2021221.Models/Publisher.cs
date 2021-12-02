@@ -24,7 +24,7 @@ namespace AKRYTN_HFT_2021221.Models
         [Required]
         public string p_address { get; set; } // Stores the addres of the publisher
 
-
+        [Required]
         public string p_website { get; set; } // Stores the website of the publisher
 
         [Required]
@@ -39,6 +39,12 @@ namespace AKRYTN_HFT_2021221.Models
         public Publisher()
         {
             Books = new HashSet<Book>();
+        }
+
+        public override string ToString()
+        {
+            string data = $"Id: {p_id}\tName: {p_name}\tAddress: {p_address}\tWebsite: {p_website}\tEmail: {p_email}";
+            return data;
         }
     }
 }

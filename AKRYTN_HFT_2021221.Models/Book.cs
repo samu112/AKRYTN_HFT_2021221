@@ -31,6 +31,7 @@ namespace AKRYTN_HFT_2021221.Models
 
 
         // FK: Id of the publisher
+        [Required]
         [ForeignKey(nameof(Publisher))]
         public int b_publisher_id { get; set; }
 
@@ -43,5 +44,11 @@ namespace AKRYTN_HFT_2021221.Models
         [IgnoreDataMember]
         [NotMapped]
         public virtual ICollection<CartItem> CartItem { get; set; }
+
+        public override string ToString()
+        {
+            string data = $"Id: {b_id}\tTitle: {b_title}\tAuthor: {b_author}\tPrice: {b_price}\tRelease: {b_releaseDate.Year} Publisher ID: {b_publisher_id}";
+            return data;
+        }
     }
 }

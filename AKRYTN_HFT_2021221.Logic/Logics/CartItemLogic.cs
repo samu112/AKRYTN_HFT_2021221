@@ -11,11 +11,15 @@ namespace AKRYTN_HFT_2021221.Logic
     public class CartItemLogic : ICartItemLogic
     {
         private ICartItemRepository cartItemRepo;
+        private IBookRepository bookRepo;
+        private ICartRepository cartRepo;
 
         //Constructor overload for testing.
-        public CartItemLogic(ICartItemRepository cartItemRepo)
+        public CartItemLogic(ICartItemRepository cartItemRepo, IBookRepository bookRepo, ICartRepository cartRepo)
         {
             this.cartItemRepo = cartItemRepo;
+            this.bookRepo = bookRepo;
+            this.cartRepo = cartRepo;
         }
 
         //NON-CRUD METHODS:
@@ -49,6 +53,43 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public void AddNewCartItem(CartItem cartItem)
         {
+            CartItem idlesscartItem = new CartItem();
+
+            //Quantity check
+            if (!string.IsNullOrEmpty(cartItem.ci_quantity.ToString()))
+            {
+                if (cartItem.ci_quantity > 0) { idlesscartItem.ci_quantity = cartItem.ci_quantity; }
+                else { throw new ArgumentNullException("CartItem quantity can't be less than 1!"); }
+            }
+            else { throw new ArgumentNullException("CartItem quantity must have a value!"); }
+
+            //BookId check
+            if (!string.IsNullOrEmpty(cartItem.ci_book_id.ToString()))
+            {
+                var allBooks = bookRepo.GetAll();
+                var book = allBooks.Where(book => book.b_id == cartItem.ci_book_id);
+                if (book.Count() == 0) 
+                {
+                    throw new ArgumentException($"There is no book with id: {cartItem.ci_book_id}");
+                }
+                else { idlesscartItem.ci_book_id = cartItem.ci_book_id; }
+            }
+            else { throw new ArgumentNullException("CartItem book id must have a value!"); }
+
+            //CartId check
+            if (!string.IsNullOrEmpty(cartItem.ci_cart_id.ToString()))
+            {
+                var allCarts = cartRepo.GetAll();
+                var cart = allCarts.Where(cart => cart.c_id == cartItem.ci_cart_id);
+                if (cart.Count() == 0)
+                {
+                    throw new ArgumentException($"There is no cart with id: {cartItem.ci_cart_id}");
+                }
+                else { idlesscartItem.ci_cart_id = cartItem.ci_cart_id; }
+            }
+            else { throw new ArgumentNullException("CartItem cart id must have a value!"); }
+
+            //Succesfull addition
             this.cartItemRepo.Insert(cartItem);
         }
 

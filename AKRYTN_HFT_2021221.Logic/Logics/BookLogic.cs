@@ -2,6 +2,7 @@
 using AKRYTN_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,6 +83,51 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public void AddBook(Book book)
         {
+            Book idlessBook = new Book();
+
+            //Title check
+            if (!string.IsNullOrEmpty(book.b_title) && !string.IsNullOrWhiteSpace(book.b_title))
+            {
+                idlessBook.b_title = book.b_title;
+            }
+            else { throw new ArgumentNullException("Book title must have a value!"); }
+            //Author check
+            if (!string.IsNullOrEmpty(book.b_author) && !string.IsNullOrWhiteSpace(book.b_author))
+            {
+                idlessBook.b_title = book.b_title;
+            }
+            else { throw new ArgumentNullException("Book author must have a value!"); }
+            //Price check
+            if (!string.IsNullOrEmpty(book.b_price.ToString()))
+            {
+                if (book.b_price >= 0) { idlessBook.b_price = book.b_price; }
+                else { throw new ArgumentException("The price cannot be less than 0!"); }
+            }
+            else { throw new ArgumentNullException("Book must have a price!"); }
+            //ReleaseDate check
+            if (book.b_releaseDate != DateTime.MinValue)
+            {
+                idlessBook.b_releaseDate = book.b_releaseDate;
+            }
+            else { throw new ArgumentException("Add a valid release date!"); }
+            //PublisherId check
+            if (!string.IsNullOrEmpty(book.b_publisher_id.ToString()))
+            {
+                if (book.b_publisher_id > 0)
+                {
+                    var allPublishers = publisherRepo.GetAll();
+                    var publisher = allPublishers.Where(publisher => publisher.p_id == book.b_publisher_id);
+                    if (publisher.Count() == 0)
+                    {
+                        throw new ArgumentException($"There is no publisher with id: {book.b_publisher_id}");
+                    }
+                    else { idlessBook.b_publisher_id = book.b_publisher_id; }
+                }
+
+            }
+            else { throw new ArgumentNullException("Book publisher id must have a value"); }
+
+            //Succesfull addition
             this.bookRepo.Insert(book);
         }
 
@@ -116,5 +162,7 @@ namespace AKRYTN_HFT_2021221.Logic
                 this.bookRepo.UpdatePublisherid(id, newPublisher);
             }
         }
+
+
     }
 }

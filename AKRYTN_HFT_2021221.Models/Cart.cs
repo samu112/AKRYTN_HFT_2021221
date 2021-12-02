@@ -17,6 +17,7 @@ namespace AKRYTN_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int c_id { get; set; } // PK: Id of the item
 
+        [Required]
         public string c_creditcardNumber { get; set; } // Stores the credit card number
 
         [Required]
@@ -42,6 +43,12 @@ namespace AKRYTN_HFT_2021221.Models
         public Cart()
         {
             CartItem = new HashSet<CartItem>();
+        }
+
+        public override string ToString()
+        {
+            string data= $"Id: {c_id}\tCreditcard: {c_creditcardNumber}\tBilling: {c_billingAddress}\tDeliver: {c_deliver}\tUser ID: {c_user_id}";
+            return data;
         }
     }
 }

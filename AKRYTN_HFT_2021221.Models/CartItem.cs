@@ -17,6 +17,7 @@ namespace AKRYTN_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ci_id { get; set; } // PK: Own id
 
+        [Required]
         public int ci_quantity { get; set; } // How many the user want to buy from that book
 
         // FK: Id of the book
@@ -37,5 +38,10 @@ namespace AKRYTN_HFT_2021221.Models
         [NotMapped]
         public virtual Cart Cart { get; set; }
 
+        public override string ToString()
+        {
+            string data = $"Id: {ci_id}\tBook ID: {ci_book_id}\tCart ID: {ci_cart_id}\tQuantity: {ci_quantity}";
+            return data;
+        }
     }
 }

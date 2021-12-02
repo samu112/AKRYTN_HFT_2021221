@@ -22,7 +22,7 @@ namespace AKRYTN_HFT_2021221.Models
         [Required]
         public DateTime u_regDate { get; set; } // Stores the registration date of the user
 
-        
+        [Required]
         public string u_address { get; set; } // Stores the address of the user
 
         [Required]
@@ -34,5 +34,10 @@ namespace AKRYTN_HFT_2021221.Models
         [NotMapped]
         public virtual Cart Cart { get; set; }
 
+        public override string ToString()
+        {
+            string data= $"Id: {u_id}\tName: {u_name}\tRegistration Date: {u_regDate}\tEmail: {u_email}\tAddress: {u_address} ";
+            return data;
+        }
     }
 }

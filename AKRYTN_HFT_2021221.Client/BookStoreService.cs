@@ -127,7 +127,7 @@ namespace AKRYTN_HFT_2021221.Client
             //BookLogic methods:
 
         //Get Publisher
-        public Publisher GetPublisher(int id)
+        public Publisher BookGetPublisher(int id)
         {
             Publisher item = default(Publisher);
             HttpResponseMessage response = client.GetAsync("book" + "/" + id.ToString() + "/publisher").GetAwaiter().GetResult();

@@ -81,6 +81,34 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public void AddNewUser(User user)
         {
+            User idlessUser = new User();
+
+            //Name check
+            if (!string.IsNullOrEmpty(user.u_name) && !string.IsNullOrWhiteSpace(user.u_name))
+            {
+                idlessUser.u_name = user.u_name;
+            }
+            else { throw new ArgumentNullException("User name must have a value!"); }
+            //RegDate check
+            if (user.u_regDate != DateTime.MinValue)
+            {
+                idlessUser.u_regDate = user.u_regDate;
+            }
+            else { throw new ArgumentException("Add a valid registration date!"); }
+            //Address check
+            if (!string.IsNullOrEmpty(user.u_address) && !string.IsNullOrWhiteSpace(user.u_address))
+            {
+                idlessUser.u_address = user.u_address;
+            }
+            else { throw new ArgumentNullException("User address must have a value!"); }
+            //Email check
+            if (!string.IsNullOrEmpty(user.u_email) && !string.IsNullOrWhiteSpace(user.u_email))
+            {
+                idlessUser.u_email = user.u_email;
+            }
+            else { throw new ArgumentNullException("User email must have a value!"); }
+
+            //Succesfull addition
             this.userRepo.Insert(user);
         }
 

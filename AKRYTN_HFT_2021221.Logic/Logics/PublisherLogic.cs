@@ -68,6 +68,34 @@ namespace AKRYTN_HFT_2021221.Logic
 
         public void AddNewPublisher(Publisher publisher)
         {
+            Publisher idlessPublisher = new Publisher();
+
+            //Name check
+            if (!string.IsNullOrEmpty(publisher.p_name) && !string.IsNullOrWhiteSpace(publisher.p_name))
+            {
+                idlessPublisher.p_name = publisher.p_name;
+            }
+            else { throw new ArgumentNullException("Publisher name must have a value!"); }
+            //Address check
+            if (!string.IsNullOrEmpty(publisher.p_address) && !string.IsNullOrWhiteSpace(publisher.p_address))
+            {
+                idlessPublisher.p_address = publisher.p_address;
+            }
+            else { throw new ArgumentNullException("Publisher address must have a value!"); }
+            //Website check
+            if (!string.IsNullOrEmpty(publisher.p_website) && !string.IsNullOrWhiteSpace(publisher.p_website))
+            {
+                idlessPublisher.p_website = publisher.p_website;
+            }
+            else { throw new ArgumentNullException("Publisher website must have a value!"); }
+            //Email check
+            if (!string.IsNullOrEmpty(publisher.p_email) && !string.IsNullOrWhiteSpace(publisher.p_email))
+            {
+                idlessPublisher.p_email = publisher.p_email;
+            }
+            else { throw new ArgumentNullException("Publisher email must have a value!"); }
+
+            //Succesfull addition
             this.publisherRepo.Insert(publisher);
         }
 
