@@ -13,19 +13,19 @@ namespace AKRYTN_HFT_2021221.Client
             Console.WriteLine("Hello World!");
             //Wait for the webserver to start
             //System.Threading.Thread.Sleep(8000);
-            menu(args, BookStoreConsoleMenu.store);
+            menu(args, BookStoreConsoleMenuMethods.store);
 
         }
 
         static void menu(string[] args, BookStoreService store)
         {
             var subMenuBook = new ConsoleMenu(args, level: 1)
-              .Add("Add book", () => BookStoreConsoleMenu.AddBook())
-              .Add("Get book by ID", () => BookStoreConsoleMenu.GetBookById())
-              .Add("Get all books", () => BookStoreConsoleMenu.GetAllBooks())
-              .Add("Edit book", () => BookStoreConsoleMenu.ChangeBook())
-              .Add("Delete book", () => BookStoreConsoleMenu.DeleteBook())
-              .Add("Get the publisher of a book", () => BookStoreConsoleMenu.GetBookPublisher())
+              .Add("Add book", () => BookStoreConsoleMenuMethods.AddBook())
+              .Add("Get book by ID", () => BookStoreConsoleMenuMethods.GetBookById())
+              .Add("Get all books", () => BookStoreConsoleMenuMethods.GetAllBooks())
+              .Add("Edit book", () => BookStoreConsoleMenuMethods.ChangeBook())
+              .Add("Delete book", () => BookStoreConsoleMenuMethods.DeleteBook())
+              .Add("Get the publisher of a book", () => BookStoreConsoleMenuMethods.GetBookPublisher())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {
@@ -37,14 +37,14 @@ namespace AKRYTN_HFT_2021221.Client
               });
 
             var subMenuCart = new ConsoleMenu(args, level: 1)
-              .Add("Add cart", () => BookStoreConsoleMenu.AddCart())
-              .Add("Get cart by ID", () => BookStoreConsoleMenu.GetCartById())
-              .Add("Get all carts", () => BookStoreConsoleMenu.GetAllCarts())
-              .Add("Edit cart", () => BookStoreConsoleMenu.ChangeCart())
-              .Add("Delete cart", () => BookStoreConsoleMenu.DeleteCart())
-              .Add("Get cart items in this cart", () => BookStoreConsoleMenu.GetCartItemsInThisCart())
-              .Add("Get the price of the cart", () => BookStoreConsoleMenu.GetCartPrice())
-              .Add("Get the books in this cart", () => BookStoreConsoleMenu.GetBooksInThisCart())
+              .Add("Add cart", () => BookStoreConsoleMenuMethods.AddCart())
+              .Add("Get cart by ID", () => BookStoreConsoleMenuMethods.GetCartById())
+              .Add("Get all carts", () => BookStoreConsoleMenuMethods.GetAllCarts())
+              .Add("Edit cart", () => BookStoreConsoleMenuMethods.ChangeCart())
+              .Add("Delete cart", () => BookStoreConsoleMenuMethods.DeleteCart())
+              .Add("Get cart items in this cart", () => BookStoreConsoleMenuMethods.GetCartItemsInThisCart())
+              .Add("Get the price of the cart", () => BookStoreConsoleMenuMethods.GetCartPrice())
+              .Add("Get the books in this cart", () => BookStoreConsoleMenuMethods.GetBooksInThisCart())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {
@@ -56,13 +56,13 @@ namespace AKRYTN_HFT_2021221.Client
               });
 
             var subMenuUser = new ConsoleMenu(args, level: 1)
-              .Add("Add user", () => BookStoreConsoleMenu.AddUser())
-              .Add("Get user by ID", () => BookStoreConsoleMenu.GetUserById())
-              .Add("Get all users", () => BookStoreConsoleMenu.GetAllUsers())
-              .Add("Edit user", () => BookStoreConsoleMenu.ChangeUser())
-              .Add("Delete user", () => BookStoreConsoleMenu.DeleteUser())
-              .Add("Get user's cart", () => BookStoreConsoleMenu.GetUserCart())
-              .Add("Get user's cart items", () => BookStoreConsoleMenu.GetUserCartItems())
+              .Add("Add user", () => BookStoreConsoleMenuMethods.AddUser())
+              .Add("Get user by ID", () => BookStoreConsoleMenuMethods.GetUserById())
+              .Add("Get all users", () => BookStoreConsoleMenuMethods.GetAllUsers())
+              .Add("Edit user", () => BookStoreConsoleMenuMethods.ChangeUser())
+              .Add("Delete user", () => BookStoreConsoleMenuMethods.DeleteUser())
+              .Add("Get user's cart", () => BookStoreConsoleMenuMethods.GetUserCart())
+              .Add("Get user's cart items", () => BookStoreConsoleMenuMethods.GetUserCartItems())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {
@@ -74,12 +74,12 @@ namespace AKRYTN_HFT_2021221.Client
               });
 
             var subMenuPublisher = new ConsoleMenu(args, level: 1)
-              .Add("Add publisher", () => BookStoreConsoleMenu.AddPublisher())
-              .Add("Get publisher by ID", () => BookStoreConsoleMenu.GetPublisherById())
-              .Add("Get all publishers", () => BookStoreConsoleMenu.GetAllPublishers())
-              .Add("Edit publisher", () => BookStoreConsoleMenu.ChangePublisher())
-              .Add("Delete publisher", () => BookStoreConsoleMenu.DeletePublisher())
-              .Add("Get publisher's books", () => BookStoreConsoleMenu.GetPublisherBooks())
+              .Add("Add publisher", () => BookStoreConsoleMenuMethods.AddPublisher())
+              .Add("Get publisher by ID", () => BookStoreConsoleMenuMethods.GetPublisherById())
+              .Add("Get all publishers", () => BookStoreConsoleMenuMethods.GetAllPublishers())
+              .Add("Edit publisher", () => BookStoreConsoleMenuMethods.ChangePublisher())
+              .Add("Delete publisher", () => BookStoreConsoleMenuMethods.DeletePublisher())
+              .Add("Get publisher's books", () => BookStoreConsoleMenuMethods.GetPublisherBooks())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {
@@ -91,11 +91,11 @@ namespace AKRYTN_HFT_2021221.Client
               });
 
             var subMenuCartItem = new ConsoleMenu(args, level: 1)
-              .Add("Add cart item", () => BookStoreConsoleMenu.AddCartItem())
-              .Add("Get cart item by ID", () => BookStoreConsoleMenu.GetCartItemById())
-              .Add("Get all cart items", () => BookStoreConsoleMenu.GetAllCartItem())
-              .Add("Edit cart item", () => BookStoreConsoleMenu.ChangeCartItem())
-              .Add("Delete cart item", () => BookStoreConsoleMenu.DeleteCartItem())
+              .Add("Add cart item", () => BookStoreConsoleMenuMethods.AddCartItem())
+              .Add("Get cart item by ID", () => BookStoreConsoleMenuMethods.GetCartItemById())
+              .Add("Get all cart items", () => BookStoreConsoleMenuMethods.GetAllCartItem())
+              .Add("Edit cart item", () => BookStoreConsoleMenuMethods.ChangeCartItem())
+              .Add("Delete cart item", () => BookStoreConsoleMenuMethods.DeleteCartItem())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace AKRYTN_HFT_2021221.Repository
 {
 
-    public abstract class Repository<TEntity> : IRepository<TEntity>
-        where TEntity : class
+    public abstract class Repository<T> : IRepository<T>
+        where T : class
     {
 
         protected BookStoreDbContext dbContext = new BookStoreDbContext();
@@ -20,25 +20,25 @@ namespace AKRYTN_HFT_2021221.Repository
         }
 
 
-        public IQueryable<TEntity> GetAll()
+        public IQueryable<T> GetAll()
         {
-            return this.dbContext.Set<TEntity>();
+            return this.dbContext.Set<T>();
         }
 
 
-        public abstract TEntity GetOneById(int id);
+        public abstract T GetOneById(int id);
 
 
-        public void Insert(TEntity entity)
+        public void Insert(T entity)
         {
-            this.dbContext.Set<TEntity>().Add(entity);
+            this.dbContext.Set<T>().Add(entity);
             this.dbContext.SaveChanges();
         }
 
 
         public void Remove(int id)
         {
-            this.dbContext.Set<TEntity>().Remove(this.GetOneById(id));
+            this.dbContext.Set<T>().Remove(this.GetOneById(id));
             this.dbContext.SaveChanges();
         }
     }

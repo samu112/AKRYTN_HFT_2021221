@@ -70,10 +70,17 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         //------------------------------------------------------------
 
         //GET /Book/1/publisher
-        [HttpGet("{id:int}/publisher")] 
+        [HttpGet("{id:int}/publisher")]
         public Publisher GetBookPublisher(int id)
         {
             return _BookLogic.GetBookPublisher(id);
+        }
+
+        //GET /Book/bookgroupedbypublisher
+        [HttpGet("bookgroupedbypublisher")]
+        public IEnumerable<IGrouping<string, Book>> GetBooksGroupedByPublisher()
+        {
+            return _BookLogic.GetBooksGroupedByPublisher();
         }
 
     }

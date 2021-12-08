@@ -20,8 +20,9 @@ namespace AKRYTN_HFT_2021221.Client
         }
     }
 
-    static class BookStoreConsoleMenu
+    static class BookStoreConsoleMenuMethods
     {
+        private static Random RNG = new Random();
         private static ConsoleColor defaultColor= Console.ForegroundColor;
         private static ConsoleColor userInputColor = ConsoleColor.Red;
         private static ConsoleColor systemResponseColor = ConsoleColor.Yellow;
@@ -1462,10 +1463,26 @@ namespace AKRYTN_HFT_2021221.Client
             (int, int) cursorPosition = (Console.CursorLeft, Console.CursorTop);
             int numberOfSuggestions = 3;
             if (helperList.Count < numberOfSuggestions) { numberOfSuggestions = helperList.Count; }
+            List<int> randomIndexes = new List<int>();
+            if (helperList.Count > 3)
+            {
+                do
+                {
+                    int number = RNG.Next(0, helperList.Count);
+                    if (!randomIndexes.Any(x => x == number))
+                    {
+                        randomIndexes.Add(number);
+                    }
+                } while (randomIndexes.Count != numberOfSuggestions);
+            }
             WriteLine("\n\n------------Suggestions------------");
             for (int i = 0; i < numberOfSuggestions; i++)
             {
-                WriteLine(helperList[i]);
+                if (helperList.Count < 3)
+                {
+                    randomIndexes.Add(i);
+                }
+                WriteLine(helperList[randomIndexes[i]]);
             }
             WriteLine("------------Suggestions------------");
             Console.CursorLeft = cursorPosition.Item1;
@@ -1501,6 +1518,7 @@ namespace AKRYTN_HFT_2021221.Client
                         (int, int) cursor = Console.GetCursorPosition();
                         Console.CursorTop += 9;
                         Console.Write("Foreign key doesn't exist!");
+                        System.Threading.Thread.Sleep(500);
                         Console.SetCursorPosition(cursor.Item1, cursor.Item2);
                         Color(userInputColor);
                     }

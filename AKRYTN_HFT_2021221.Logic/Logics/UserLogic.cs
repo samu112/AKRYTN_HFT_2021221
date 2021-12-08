@@ -13,13 +13,15 @@ namespace AKRYTN_HFT_2021221.Logic
         private IUserRepository userRepo;
         private ICartRepository cartRepo;
         private ICartItemRepository cartItemRepo;
+        private IBookRepository bookRepo;
 
         //Constructor overload for testing.
-        public UserLogic(IUserRepository userRepo, ICartRepository cartRepo, ICartItemRepository cartItemRepo)
+        public UserLogic(IUserRepository userRepo, ICartRepository cartRepo, ICartItemRepository cartItemRepo, IBookRepository bookRepo)
         {
             this.userRepo = userRepo;
             this.cartRepo = cartRepo;
             this.cartItemRepo = cartItemRepo;
+            this.bookRepo = bookRepo;
         }
 
         //NON-CRUD METHODS:
@@ -42,7 +44,6 @@ namespace AKRYTN_HFT_2021221.Logic
                             select cartItem;
             return cartItems;
         }
-
 
         //CRUD METHODS:
 
@@ -138,5 +139,6 @@ namespace AKRYTN_HFT_2021221.Logic
                 this.userRepo.UpdateEmail(id, newEmail);
             }
         }
+
     }
 }
