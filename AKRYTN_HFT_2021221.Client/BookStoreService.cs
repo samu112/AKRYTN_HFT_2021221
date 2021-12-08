@@ -202,8 +202,17 @@ namespace AKRYTN_HFT_2021221.Client
             return item;
         }
 
-
-
+        //Get users with book older than x year
+        public IEnumerable<User> UserWithBookOlderThanXyear(int year)
+        {
+            IEnumerable<User> item = default(IEnumerable<User>);
+            HttpResponseMessage response = client.GetAsync("user" + "/" + "olderthan/" + year.ToString() + "year").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<IEnumerable<User>>().GetAwaiter().GetResult();
+            }
+            return item;
+        }
 
     }
 }

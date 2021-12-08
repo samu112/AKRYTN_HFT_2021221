@@ -63,6 +63,7 @@ namespace AKRYTN_HFT_2021221.Client
               .Add("Delete user", () => BookStoreConsoleMenuMethods.DeleteUser())
               .Add("Get user's cart", () => BookStoreConsoleMenuMethods.GetUserCart())
               .Add("Get user's cart items", () => BookStoreConsoleMenuMethods.GetUserCartItems())
+              .Add("Get users who have book older than x year", ()=> BookStoreConsoleMenuMethods.GetUserWithBookOlderThanXyear())
               .Add("Back", ConsoleMenu.Close)
               .Configure(config =>
               {

@@ -26,8 +26,6 @@ namespace AKRYTN_HFT_2021221.Logic
         //Get publisher of the book
         Publisher GetBookPublisher(int id);
 
-        IEnumerable<IGrouping<string, Book>> GetBooksGroupedByPublisher();
-
 
     }
 }

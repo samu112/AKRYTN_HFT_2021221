@@ -76,12 +76,5 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             return _BookLogic.GetBookPublisher(id);
         }
 
-        //GET /Book/bookgroupedbypublisher
-        [HttpGet("bookgroupedbypublisher")]
-        public IEnumerable<IGrouping<string, Book>> GetBooksGroupedByPublisher()
-        {
-            return _BookLogic.GetBooksGroupedByPublisher();
-        }
-
     }
 }

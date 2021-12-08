@@ -94,7 +94,7 @@ namespace AKRYTN_HFT_2021221.Data
 
             //Book
 
-            Book book1 = new Book() { b_id = 1, b_title = "How to become Rich!", b_author = "Rich Richard", b_price = 25000, b_releaseDate = DateTime.Parse("2021.02.01 00:00:00"), b_publisher_id = 1 };
+            Book book1 = new Book() { b_id = 1, b_title = "How to become Rich!", b_author = "Rich Richard", b_price = 25000, b_releaseDate = DateTime.Parse("2020.02.01 00:00:00"), b_publisher_id = 1 };
 
             modelBuilder.Entity<Book>().HasData(book1);
         }

@@ -77,5 +77,12 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
             return _userLogic.GetUserCartItems(id);
         }
 
+        //GET /User/olderthan/1year
+        [HttpGet("olderthan/{year:int}year")]
+        public IEnumerable<User> UserWithBookOlderThanXyear(int year)
+        {
+            return _userLogic.UserWithBookOlderThanXyear(year);
+        }
+
     }
 }

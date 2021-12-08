@@ -35,19 +35,6 @@ namespace AKRYTN_HFT_2021221.Logic
            return publisher;
         }
 
-        public IEnumerable<IGrouping<string, Book>> GetBooksGroupedByPublisher()
-        {
-            var everybook = bookRepo.GetAll();
-            var everypublisher = publisherRepo.GetAll();
-            var books = (from book in everybook
-                         join publisher in everypublisher
-                         on book.b_publisher_id equals publisher.p_id
-                         group book by publisher.p_name into g
-                         select g).AsEnumerable(); ;
-            return books;
-        }
-
-
         //CRUD METHODS:
 
         public bool DeleteBook(int id)

@@ -28,6 +28,7 @@ namespace AKRYTN_HFT_2021221.Logic
         //Get user's cart items
         IEnumerable<CartItem> GetUserCartItems(int id);
 
-
+        //UserWithBookOlderThanXyear
+        public IEnumerable<User> UserWithBookOlderThanXyear(int year);
     }
 }

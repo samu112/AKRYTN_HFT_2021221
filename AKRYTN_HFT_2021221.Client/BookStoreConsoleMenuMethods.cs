@@ -97,7 +97,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetBookById()
         {
             Write("Add the id of the book: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Book book = store.Get<Book>(id, "book");
@@ -236,7 +236,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void DeleteBook()
         {
             Write("Add the id of the book: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Book book = store.Get<Book>(id, "book");
@@ -271,7 +271,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetBookPublisher()
         {
             Write("Add the id of the book: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Book book = store.Get<Book>(id, "book");
@@ -371,7 +371,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetCartById()
         {
             Write("Add the id of the cart: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Cart cart = store.Get<Cart>(id, "cart");
@@ -511,7 +511,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void DeleteCart()
         {
             Write("Add the id of the cart: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Cart cart = store.Get<Cart>(id, "cart");
@@ -546,7 +546,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetCartItemsInThisCart()
         {
             Write("Add the id of the cart: ");
-            int cartId = Convert.ToInt32(ReadLine(true));
+            int cartId = ReadOnlyDigit(true);
             try
             {
                 Cart cart = store.Get<Cart>(cartId, "cart");
@@ -573,7 +573,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetCartPrice()
         {
             Write("Add the id of the cart: ");
-            int cartId = Convert.ToInt32(ReadLine(true));
+            int cartId = ReadOnlyDigit(true);
             try
             {
                 Cart cart = store.Get<Cart>(cartId, "cart");
@@ -597,7 +597,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetBooksInThisCart()
         {
             Write("Add the id of the cart: ");
-            int cartId = Convert.ToInt32(ReadLine(true));
+            int cartId = ReadOnlyDigit(true);
             try
             {
                 Cart cart = store.Get<Cart>(cartId, "cart");
@@ -675,7 +675,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetUserById()
         {
             Write("Add the id of the user: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 User user = store.Get<User>(id, "user");
@@ -794,7 +794,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void DeleteUser()
         {
             Write("Add the id of the user: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 User user = store.Get<User>(id, "user");
@@ -830,7 +830,7 @@ namespace AKRYTN_HFT_2021221.Client
         {
             //Cart cart = store.GetUserCart()
             Write("Add the id of the cart: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 User user = store.Get<User>(id, "user"); 
@@ -858,7 +858,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetUserCartItems()
         {
             Write("Add the id of the user: ");
-            int userId = Convert.ToInt32(ReadLine(true));
+            int userId = ReadOnlyDigit(true);
             try
             {
                 User user = store.Get<User>(userId, "user");
@@ -878,6 +878,20 @@ namespace AKRYTN_HFT_2021221.Client
                 Color(warningMessageColor);
                 WriteLine($"Couldn't find a user with id: {userId}!");
                 ColorReset();
+            }
+            Console.ReadKey();
+        }
+
+        static public void GetUserWithBookOlderThanXyear()
+        {
+            Write("How old is the book: ");
+            int year = ReadOnlyDigit(true);
+
+            IEnumerable<User> users = store.UserWithBookOlderThanXyear(year);
+            WriteLine("__________________________________");
+            foreach (var user in users)
+            {
+                Console.WriteLine(user.ToString());
             }
             Console.ReadKey();
         }
@@ -933,7 +947,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetPublisherById()
         {
             Write("Add the id of the publisher: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Publisher publisher = store.Get<Publisher>(id, "publisher");
@@ -1044,7 +1058,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void DeletePublisher()
         {
             Write("Add the id of the publisher: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 Publisher publisher = store.Get<Publisher>(id, "publisher");
@@ -1079,7 +1093,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetPublisherBooks()
         {
             Write("Add the id of the publisher: ");
-            int publisherId = Convert.ToInt32(ReadLine(true));
+            int publisherId = ReadOnlyDigit(true);
             try
             {
                 Publisher publisher = store.Get<Publisher>(publisherId, "publisher");
@@ -1172,7 +1186,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void GetCartItemById()
         {
             Write("Add the id of the cart-item: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 CartItem cartItem = store.Get<CartItem>(id, "cartitem");
@@ -1297,7 +1311,7 @@ namespace AKRYTN_HFT_2021221.Client
         static public void DeleteCartItem()
         {
             Write("Add the id of the cart-item: ");
-            int id = Convert.ToInt32(ReadLine(true));
+            int id = ReadOnlyDigit(true);
             try
             {
                 CartItem cartItem = store.Get<CartItem>(id, "cartitem");
@@ -1634,6 +1648,7 @@ namespace AKRYTN_HFT_2021221.Client
             // Stops Receving Keys Once Enter is Pressed
             while (key.Key != ConsoleKey.Enter || _val == "");
             Console.ForegroundColor = currentForeground;
+            Console.WriteLine("");
             return Convert.ToInt32(_val);
         } 
 

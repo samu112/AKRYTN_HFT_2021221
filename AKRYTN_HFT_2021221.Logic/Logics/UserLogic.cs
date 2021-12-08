@@ -45,6 +45,25 @@ namespace AKRYTN_HFT_2021221.Logic
             return cartItems;
         }
 
+        //UserWithBookOlderThanXyear
+        public IEnumerable<User> UserWithBookOlderThanXyear(int year)
+        {
+            year = year * -1;
+            var everyBook = bookRepo.GetAll();
+            var everyUser = userRepo.GetAll();
+            var everyCart= cartRepo.GetAll();
+            var everyCartItem = cartItemRepo.GetAll();
+
+            var users = (from user in everyUser
+                        join cart in everyCart on user.u_id equals cart.c_user_id
+                        join cartItem in everyCartItem on cart.c_id equals cartItem.ci_cart_id
+                        join book in everyBook on cartItem.ci_book_id equals book.b_id
+                        where book.b_releaseDate < DateTime.Now.AddYears(year)
+                        select user).Distinct();
+
+            return users;
+        }
+
         //CRUD METHODS:
 
         public bool DeleteUser(int id)

@@ -41,7 +41,7 @@ namespace AKRYTN_HFT_2021221_Endpoint
             services.AddTransient<IUserLogic, UserLogic>();
             services.AddTransient<IUserRepository, UserRepository>();
             //DbContext
-            services.AddTransient<BookStoreDbContext, BookStoreDbContext>();
+            services.AddScoped<BookStoreDbContext, BookStoreDbContext>();
         }
 
         // Configure the HTTP request pipeline

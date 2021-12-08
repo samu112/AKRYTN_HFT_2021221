@@ -133,7 +133,7 @@ namespace AKRYTN_HFT_2021221_Test
         }
 
         [Test]
-        public void GetBooksInThisCart()
+        public void TestGetBooksInThisCart()
         {
             //Arrange
             Mock<ICartRepository> cartRepo = new Mock<ICartRepository>();
@@ -155,7 +155,30 @@ namespace AKRYTN_HFT_2021221_Test
             bookRepo.Verify(repo => repo.GetOneById(It.IsAny<int>()), Times.Exactly(3));
         }
 
+        [Test]
+        public void TestUsersWithBookOlderThanXyear()
+        {
+            //Arrange
+            Mock<IUserRepository> userRepo = new Mock<IUserRepository>();
+            Mock<ICartRepository> cartRepo = new Mock<ICartRepository>();
+            Mock<ICartItemRepository> cartItemRepo = new Mock<ICartItemRepository>();
+            Mock<IBookRepository> bookRepo = new Mock<IBookRepository>();
 
+
+            UserLogic logic = new UserLogic(userRepo.Object, cartRepo.Object, cartItemRepo.Object, bookRepo.Object);
+
+            userRepo.Setup(repo => repo.GetAll()).Returns(usersDb.AsQueryable());
+            cartRepo.Setup(repo => repo.GetAll()).Returns(cartsDb.AsQueryable());
+            cartItemRepo.Setup(repo => repo.GetAll()).Returns(cartItemsDb.AsQueryable());
+            bookRepo.Setup(repo => repo.GetAll()).Returns(booksDb.AsQueryable());
+
+            int year = 3;
+
+            //Act
+            var users = logic.UserWithBookOlderThanXyear(year);
+
+            Assert.That(users.Count, Is.EqualTo(1));
+        }
 
 
 
