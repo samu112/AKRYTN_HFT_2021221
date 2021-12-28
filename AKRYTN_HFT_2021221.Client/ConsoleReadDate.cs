@@ -104,7 +104,7 @@ namespace AKRYTN_HFT_2021221.Client
             }
 
             //Check year, because if it is minimum or maximum, we have to change upper or lower limit
-            if (year == maximumDate.Year.ToString())
+            if (year == maximumDate.Year.ToString() && month == maximumDate.Month.ToString())
             {
                 day = DatePartBuilder(2, 1, maximumDate.Day, ref partNumber, required);
             }
