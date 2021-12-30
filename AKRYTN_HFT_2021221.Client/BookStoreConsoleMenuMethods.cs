@@ -1626,7 +1626,7 @@ namespace AKRYTN_HFT_2021221.Client
                 {
                     return -1;
                 }
-                if (key.Key != ConsoleKey.Backspace)
+                if (key.Key != ConsoleKey.Backspace && _val.Length < 9)
                 {
                     double val = 0;
                     bool _x = double.TryParse(key.KeyChar.ToString(), out val);
@@ -1646,7 +1646,7 @@ namespace AKRYTN_HFT_2021221.Client
                 }
             }
             // Stops Receving Keys Once Enter is Pressed
-            while (key.Key != ConsoleKey.Enter || _val == "");
+            while (key.Key != ConsoleKey.Enter || _val == "" || _val.Length > 9);
             Console.ForegroundColor = currentForeground;
             Console.WriteLine("");
             return Convert.ToInt32(_val);
