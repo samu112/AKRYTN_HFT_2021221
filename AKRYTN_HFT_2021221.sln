@@ -24,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{B4422E09-5E75-4CB9-B1D1-3A8D771C1EF2}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		ADT-projectwork-details.pdf = ADT-projectwork-details.pdf
+		Database.png = Database.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKRYTN_HFT_2021221.Client", "AKRYTN_HFT_2021221.Client\AKRYTN_HFT_2021221.Client.csproj", "{55D256A3-2783-4229-A80C-502AE01602B4}"
