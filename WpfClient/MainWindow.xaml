@@ -7,6 +7,9 @@
         xmlns:viewModels="clr-namespace:WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel></viewModels:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -19,7 +22,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         
-        <Button Command="{Binding ManageActorsCommand}" Content="Manage Users" Margin="50" Grid.Column="0" Grid.Row="0" />
+        <Button Command="{Binding ManageUsersCommand}" Content="Manage Users" Margin="50" Grid.Column="0" Grid.Row="0" />
         <Button Command="{Binding ManageActorsCommand}" Content="Manage Books" Margin="50" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" />
         <Button Command="{Binding ManageActorsCommand}" Content="Manage Publishers" Margin="50" Grid.Column="3" Grid.Row="0" />
 

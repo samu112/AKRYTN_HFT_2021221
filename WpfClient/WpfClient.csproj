@@ -11,4 +11,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AKRYTN_HFT_2021221.Models\AKRYTN_HFT_2021221.Models.csproj" />
+  </ItemGroup>
+
 </Project>
