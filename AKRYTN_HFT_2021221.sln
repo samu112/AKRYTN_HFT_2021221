@@ -30,7 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{B4422E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKRYTN_HFT_2021221.Client", "AKRYTN_HFT_2021221.Client\AKRYTN_HFT_2021221.Client.csproj", "{55D256A3-2783-4229-A80C-502AE01602B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{6C9BBBFA-4C74-4E3C-87BE-03A42AF2AC34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfClient", "WpfClient\WpfClient.csproj", "{6C9BBBFA-4C74-4E3C-87BE-03A42AF2AC34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKRYTN_HFT-2021221.JSClient", "AKRYTN_HFT-2021221.JSClient\AKRYTN_HFT-2021221.JSClient.csproj", "{D34F6BBB-B6DF-47D4-B797-78838164DAD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{6C9BBBFA-4C74-4E3C-87BE-03A42AF2AC34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C9BBBFA-4C74-4E3C-87BE-03A42AF2AC34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C9BBBFA-4C74-4E3C-87BE-03A42AF2AC34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34F6BBB-B6DF-47D4-B797-78838164DAD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34F6BBB-B6DF-47D4-B797-78838164DAD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34F6BBB-B6DF-47D4-B797-78838164DAD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34F6BBB-B6DF-47D4-B797-78838164DAD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

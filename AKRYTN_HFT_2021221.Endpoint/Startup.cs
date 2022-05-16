@@ -1,4 +1,5 @@
 using AKRYTN_HFT_2021221.Data;
+using AKRYTN_HFT_2021221.Endpoint.Services;
 using AKRYTN_HFT_2021221.Logic;
 using AKRYTN_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +45,10 @@ namespace AKRYTN_HFT_2021221_Endpoint
             services.AddTransient<IUserRepository, UserRepository>();
             //DbContext
             services.AddScoped<BookStoreDbContext, BookStoreDbContext>();
+
+            //SignalR
+            services.AddSignalR();
+
             //Swagger
             services.AddSwaggerGen(c =>
             {
@@ -70,17 +75,35 @@ namespace AKRYTN_HFT_2021221_Endpoint
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:11702"));
+
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+
+            //app.UseRouting();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }

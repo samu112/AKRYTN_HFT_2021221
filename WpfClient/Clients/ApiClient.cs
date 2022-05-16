@@ -28,11 +28,13 @@ namespace WpfClient.Clients
             throw new Exception("The request was not successfull");
         }
 
+
         public async Task DeleteAsync(int id, string endpoint)
         {
             var response = await HttpClient.DeleteAsync($"{endpoint}/{id}");
 
             response.EnsureSuccessStatusCode();
+
         }
 
         public async Task PutAsync<T>(T entityToUpdate, string endpoint)
@@ -43,6 +45,18 @@ namespace WpfClient.Clients
                 "application/json");
 
             var response = await HttpClient.PutAsync(endpoint, content);
+
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task PostAsync<T>(T item, string endpoint)
+        {
+            var content =
+                new StringContent(JsonConvert.SerializeObject(item),
+                Encoding.UTF8,
+                "application/json");
+
+            var response = await HttpClient.PostAsync(endpoint, content);
 
             response.EnsureSuccessStatusCode();
         }

@@ -37,8 +37,15 @@
         </ListBox>
 
         <StackPanel Grid.Column="1">
-            <Label Content="Name of the user:" Margin="10"/>
+            <Label Content="Name:" Margin="0"/>
             <TextBox Text="{Binding SelectedUser.u_name}" Margin="10"></TextBox>
+            <Label Content="Registration Date:" Margin="0"/>
+            <TextBox Text="{Binding SelectedUser.u_regDate}" Margin="10"></TextBox>
+            <Label Content="Address:" Margin="0"/>
+            <TextBox Text="{Binding SelectedUser.u_address}" Margin="10"></TextBox>
+            <Label Content="Email:" Margin="0"/>
+            <TextBox Text="{Binding SelectedUser.u_email}" Margin="10"></TextBox>
+            <Label Content="" Margin="0"/>
             <Button Command="{Binding AddUserCommand}" Content="Add User" Margin="10" />
             <Button Command="{Binding EditUserCommand}" Content="Edit User" Margin="10" />
             <Button Command="{Binding DeleteUserCommand}" Content="Delete User" Margin="10" />
