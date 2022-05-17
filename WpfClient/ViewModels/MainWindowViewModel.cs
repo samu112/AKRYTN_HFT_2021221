@@ -12,11 +12,13 @@ namespace WpfClient.ViewModels
     {
         public RelayCommand ManageUsersCommand { get; set; }
         public RelayCommand ManageBooksCommand { get; set; }
+        public RelayCommand ManagePublishersCommand { get; set; }
 
         public MainWindowViewModel()
         {
             ManageUsersCommand = new RelayCommand(OpenUsersWindow);
             ManageBooksCommand = new RelayCommand(OpenBooksWindow);
+            ManagePublishersCommand = new RelayCommand(OpenPublishersWindow);
         }
 
         private void OpenUsersWindow()
@@ -26,6 +28,10 @@ namespace WpfClient.ViewModels
         private void OpenBooksWindow()
         {
             new BooksWindow().Show();
+        }
+        private void OpenPublishersWindow()
+        {
+            new PublishersWindow().Show();
         }
     }
 }

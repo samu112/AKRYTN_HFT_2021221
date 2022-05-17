@@ -24,7 +24,7 @@
         
         <Button Command="{Binding ManageUsersCommand}" Content="Manage Users" Margin="50" Grid.Column="0" Grid.Row="0" />
         <Button Command="{Binding ManageBooksCommand}" Content="Manage Books" Margin="50" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" />
-        <Button Command="{Binding ManageActorsCommand}" Content="Manage Publishers" Margin="50" Grid.Column="3" Grid.Row="0" />
+        <Button Command="{Binding ManagePublishersCommand}" Content="Manage Publishers" Margin="50" Grid.Column="3" Grid.Row="0" />
 
         <Button Command="{Binding ManageActorsCommand}" Content="Manage Carts" Margin="50" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
         <Button Command="{Binding ManageActorsCommand}" Content="Manage Cart Items" Margin="50" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" />
