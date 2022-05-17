@@ -17,9 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <ListBox 
-            ItemsSource="{Binding Books}"
-            SelectedItem="{Binding SelectedBook}"
-            SelectedIndex="{Binding SelectedBookIndex}"
+            ItemsSource="{Binding Publishers}"
+            SelectedItem="{Binding SelectedPublisher}"
+            SelectedIndex="{Binding SelectedPublisherIndex}"
             Grid.Column="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -29,8 +29,8 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Content="{Binding b_id}"></Label>
-                        <Label Grid.Column="1" Content="{Binding b_title}"></Label>
+                        <Label Grid.Column="0" Content="{Binding p_id}"></Label>
+                        <Label Grid.Column="1" Content="{Binding p_name}"></Label>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -38,17 +38,17 @@
 
         <StackPanel Grid.Column="1">
             <Label Content="Name:" Margin="0"/>
-            <TextBox Text="{Binding SelectedBook.b_title}" Margin="10"></TextBox>
+            <TextBox Text="{Binding SelectedPublisher.p_name}" Margin="10"></TextBox>
             <Label Content="Address:" Margin="0"/>
-            <TextBox Text="{Binding SelectedBook.b_author}" Margin="10"></TextBox>
+            <TextBox Text="{Binding SelectedPublisher.p_address}" Margin="10"></TextBox>
             <Label Content="Website:" Margin="0"/>
-            <TextBox Text="{Binding SelectedBook.b_author}" Margin="10"></TextBox>
+            <TextBox Text="{Binding SelectedPublisher.p_website}" Margin="10"></TextBox>
             <Label Content="Email:" Margin="0"/>
-            <TextBox Text="{Binding SelectedBook.b_price}" Margin="10"></TextBox>
+            <TextBox Text="{Binding SelectedPublisher.p_email}" Margin="10"></TextBox>
             <Label Content="" Margin="0"/>
-            <Button Command="{Binding AddBookCommand}" Content="Add Publisher" Margin="10" />
-            <Button Command="{Binding EditBookCommand}" Content="Edit Publisher" Margin="10" />
-            <Button Command="{Binding DeleteBookCommand}" Content="Delete Publisher" Margin="10" />
+            <Button Command="{Binding AddPublisherCommand}" Content="Add Publisher" Margin="10" />
+            <Button Command="{Binding EditPublisherCommand}" Content="Edit Publisher" Margin="10" />
+            <Button Command="{Binding DeletePublisherCommand}" Content="Delete Publisher" Margin="10" />
         </StackPanel>
     </Grid>
 </Window>

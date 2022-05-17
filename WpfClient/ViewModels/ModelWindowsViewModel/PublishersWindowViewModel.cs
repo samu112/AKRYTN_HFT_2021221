@@ -17,58 +17,41 @@ namespace WpfClient.ViewModels
     {
         private ApiClient _apiClient = new ApiClient();
 
-        public ObservableCollection<Book> Books { get; set; }
+        public ObservableCollection<Publisher> Publishers { get; set; }
 
-        public ObservableCollection<int> AllPublisherIds { get; set; }
+        private Publisher _selectedPublisher;
 
-        private Book _selectedBook;
-
-        public Book SelectedBook
+        public Publisher SelectedPublisher
         {
-            get => _selectedBook;
+            get => _selectedPublisher;
             set
             {
-                _selectedBook = new Book();
-                CopyBook(value, _selectedBook);
+                _selectedPublisher = new Publisher();
+                CopyPublisher(value, _selectedPublisher);
 
                 OnPropertyChanged();
-                //SetProperty(ref _selectedBook, value);
             }
         }
 
-        private int _selectedBookIndex;
+        private int _selectedPublisherIndex;
 
-        public int SelectedBookIndex
+        public int SelectedPublisherIndex
         {
-            get => _selectedBookIndex;
+            get => _selectedPublisherIndex;
             set
             {
-                SetProperty(ref _selectedBookIndex, value);
+                SetProperty(ref _selectedPublisherIndex, value);
             }
         }
 
-        public RelayCommand AddBookCommand { get; set; }
-        public RelayCommand EditBookCommand { get; set; }
-        public RelayCommand DeleteBookCommand { get; set; }
+        public RelayCommand AddPublisherCommand { get; set; }
+        public RelayCommand EditPublisherCommand { get; set; }
+        public RelayCommand DeletePublisherCommand { get; set; }
 
         public PublishersWindowViewModel()
         {
-            Books = new ObservableCollection<Book>();
-            //GetBooks
-            _apiClient
-                .GetAsync<List<Book>>("http://localhost:8921/book")
-                .ContinueWith((books) =>
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        books.Result.ForEach((book) =>
-                        {
-                            Books.Add(book);
-                        });
-                    });
-                });
-            //Get publishers
-            AllPublisherIds = new ObservableCollection<int>();
+            Publishers = new ObservableCollection<Publisher>();
+            //GetPublishers
             _apiClient
                 .GetAsync<List<Publisher>>("http://localhost:8921/publisher")
                 .ContinueWith((publishers) =>
@@ -77,53 +60,46 @@ namespace WpfClient.ViewModels
                     {
                         publishers.Result.ForEach((publisher) =>
                         {
-                            AllPublisherIds.Add(publisher.p_id);
+                            Publishers.Add(publisher);
                         });
                     });
                 });
-            AddBookCommand = new RelayCommand(AddBook);
-            EditBookCommand = new RelayCommand(EditBook);
-            DeleteBookCommand = new RelayCommand(DeleteBook);
+            AddPublisherCommand = new RelayCommand(AddPublisher);
+            EditPublisherCommand = new RelayCommand(EditPublisher);
+            DeletePublisherCommand = new RelayCommand(DeletePublisher);
         }
 
-        private void CopyBook(Book bookCopiedFrom, Book bookCopiedFor)
+        private void CopyPublisher(Publisher publisherCopiedFrom, Publisher publisherCopiedFor)
         {
-            if (bookCopiedFrom != null && bookCopiedFor != null)
+            if (publisherCopiedFrom != null && publisherCopiedFor != null)
             {
-                bookCopiedFor.b_id = bookCopiedFrom.b_id;
-                bookCopiedFor.b_author = bookCopiedFrom.b_author;
-                bookCopiedFor.b_price = bookCopiedFrom.b_price;
-                bookCopiedFor.b_publisher_id = bookCopiedFrom.b_publisher_id;
-                bookCopiedFor.b_releaseDate = bookCopiedFrom.b_releaseDate;
-                bookCopiedFor.b_title = bookCopiedFrom.b_title;
-                bookCopiedFor.CartItem = bookCopiedFrom.CartItem;
-                bookCopiedFor.Publisher = bookCopiedFrom.Publisher;
+                publisherCopiedFor.p_id = publisherCopiedFrom.p_id;
+                publisherCopiedFor.p_name = publisherCopiedFrom.p_name;
+                publisherCopiedFor.p_website = publisherCopiedFrom.p_website;
+                publisherCopiedFor.p_email = publisherCopiedFrom.p_email;
+                publisherCopiedFor.p_address = publisherCopiedFrom.p_address;
+                publisherCopiedFor.Books = publisherCopiedFrom.Books;
             }
         }
 
-        private void AddBook()
+        private void AddPublisher()
         {
-            if (SelectedBook == null)
+            if (SelectedPublisher == null)
             {
-                SelectedBook = new Book();
-            }
-            if (SelectedBook.b_releaseDate == DateTime.MinValue)
-            {
-                MessageBox.Show("Invalid Date!");
+                SelectedPublisher = new Publisher();
             }
             else
             {
-                Book newBook = new Book()
+                Publisher newPublisher = new Publisher()
                 {
-                    b_title = SelectedBook.b_title,
-                    b_releaseDate = SelectedBook.b_releaseDate,
-                    b_author = SelectedBook.b_author,
-                    b_price = SelectedBook.b_price,
-                    b_publisher_id = SelectedBook.b_publisher_id
+                    p_name = SelectedPublisher.p_name,
+                    p_address = SelectedPublisher.p_address,
+                    p_email = SelectedPublisher.p_email,
+                    p_website = SelectedPublisher.p_website,
                 };
 
                 _apiClient
-                    .PostAsync(newBook, "http://localhost:8921/book")
+                    .PostAsync(newPublisher, "http://localhost:8921/publisher")
                     .ContinueWith((task) =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
@@ -131,12 +107,11 @@ namespace WpfClient.ViewModels
                             if
                             (
                                 //Check if something is null
-                                String.IsNullOrEmpty(SelectedBook.b_id.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_id.ToString()) ||
-                                String.IsNullOrEmpty(SelectedBook.b_title) && String.IsNullOrWhiteSpace(SelectedBook.b_title) ||
-                                String.IsNullOrEmpty(SelectedBook.b_releaseDate.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_releaseDate.ToString()) ||
-                                String.IsNullOrEmpty(SelectedBook.b_author) && String.IsNullOrWhiteSpace(SelectedBook.b_author) ||
-                                String.IsNullOrEmpty(SelectedBook.b_price.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_price.ToString()) ||
-                                String.IsNullOrEmpty(SelectedBook.b_publisher_id.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_publisher_id.ToString())
+                                String.IsNullOrEmpty(SelectedPublisher.p_id.ToString()) && String.IsNullOrWhiteSpace(SelectedPublisher.p_id.ToString()) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_name) && String.IsNullOrWhiteSpace(SelectedPublisher.p_name) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_address) && String.IsNullOrWhiteSpace(SelectedPublisher.p_address) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_email) && String.IsNullOrWhiteSpace(SelectedPublisher.p_email) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_website) && String.IsNullOrWhiteSpace(SelectedPublisher.p_website)
                             )
                             {
                                 MessageBox.Show("You have to fill everything!");
@@ -151,10 +126,10 @@ namespace WpfClient.ViewModels
             }
         }
 
-        private void EditBook()
+        private void EditPublisher()
         {
             _apiClient
-               .PutAsync(SelectedBook, "http://localhost:8921/book")
+               .PutAsync(SelectedPublisher, "http://localhost:8921/publisher")
                .ContinueWith((task) =>
                {
                    Application.Current.Dispatcher.Invoke(() =>
@@ -162,12 +137,11 @@ namespace WpfClient.ViewModels
                        if
                        (
                            //Check if something is null
-                           String.IsNullOrEmpty(SelectedBook.b_id.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_id.ToString()) ||
-                           String.IsNullOrEmpty(SelectedBook.b_title) && String.IsNullOrWhiteSpace(SelectedBook.b_title) ||
-                           String.IsNullOrEmpty(SelectedBook.b_releaseDate.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_releaseDate.ToString()) ||
-                           String.IsNullOrEmpty(SelectedBook.b_author) && String.IsNullOrWhiteSpace(SelectedBook.b_author) ||
-                           String.IsNullOrEmpty(SelectedBook.b_price.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_price.ToString()) ||
-                           String.IsNullOrEmpty(SelectedBook.b_publisher_id.ToString()) && String.IsNullOrWhiteSpace(SelectedBook.b_publisher_id.ToString())
+                                String.IsNullOrEmpty(SelectedPublisher.p_id.ToString()) && String.IsNullOrWhiteSpace(SelectedPublisher.p_id.ToString()) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_name) && String.IsNullOrWhiteSpace(SelectedPublisher.p_name) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_address) && String.IsNullOrWhiteSpace(SelectedPublisher.p_address) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_email) && String.IsNullOrWhiteSpace(SelectedPublisher.p_email) ||
+                                String.IsNullOrEmpty(SelectedPublisher.p_website) && String.IsNullOrWhiteSpace(SelectedPublisher.p_website)
                        )
                        {
                            MessageBox.Show("You have to fill everything!");
@@ -176,29 +150,27 @@ namespace WpfClient.ViewModels
                        }
                        else
                        {
-                           Books[SelectedBookIndex].b_id = SelectedBook.b_id;
-                           Books[SelectedBookIndex].b_title = SelectedBook.b_title;
-                           Books[SelectedBookIndex].b_releaseDate = SelectedBook.b_releaseDate;
-                           Books[SelectedBookIndex].b_author = SelectedBook.b_author;
-                           Books[SelectedBookIndex].b_price = SelectedBook.b_price;
-                           Books[SelectedBookIndex].b_publisher_id = SelectedBook.b_publisher_id;
+                           Publishers[SelectedPublisherIndex].p_id = SelectedPublisher.p_id;
+                           Publishers[SelectedPublisherIndex].p_name = SelectedPublisher.p_name;
+                           Publishers[SelectedPublisherIndex].p_address = SelectedPublisher.p_address;
+                           Publishers[SelectedPublisherIndex].p_email = SelectedPublisher.p_email;
+                           Publishers[SelectedPublisherIndex].p_website = SelectedPublisher.p_website;
                            ListBoxRefresh();
                        }
                    });
                });
         }
 
-        private void DeleteBook()
+        private void DeletePublisher()
         {
             try
             {
                 _apiClient
-                    .DeleteAsync(SelectedBook.b_id, "http://localhost:8921/book")
+                    .DeleteAsync(SelectedPublisher.p_id, "http://localhost:8921/publisher")
                     .ContinueWith((task) =>
                     {
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            //Books.Remove(SelectedBook);
                             ListBoxRefresh();
                         });
                     });
@@ -219,15 +191,15 @@ namespace WpfClient.ViewModels
         private void ListBoxRefresh()
         {
             _apiClient
-                .GetAsync<List<Book>>("http://localhost:8921/book")
-                .ContinueWith((books) =>
+                .GetAsync<List<Publisher>>("http://localhost:8921/publisher")
+                .ContinueWith((publishers) =>
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        Books.Clear();
-                        books.Result.ForEach((book) =>
+                        Publishers.Clear();
+                        publishers.Result.ForEach((publisher) =>
                         {
-                            Books.Add(book);
+                            Publishers.Add(publisher);
                         });
                     });
                 });
