@@ -1,0 +1,56 @@
+﻿<Window x:Class="WpfClient.BooksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClient"
+        xmlns:viewModels="clr-namespace:WpfClient.ViewModels"
+        mc:Ignorable="d"
+        Title="BooksWindow" Height="534" Width="800">
+    <Window.DataContext>
+        <viewModels:BooksWindowViewModel></viewModels:BooksWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox 
+            ItemsSource="{Binding Books}"
+            SelectedItem="{Binding SelectedBook}"
+            SelectedIndex="{Binding SelectedBookIndex}"
+            Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="{Binding b_id}"></Label>
+                        <Label Grid.Column="1" Content="{Binding b_title}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <Label Content="Title:" Margin="0"/>
+            <TextBox Text="{Binding SelectedBook.b_title}" Margin="10"></TextBox>
+            <Label Content="Author:" Margin="0"/>
+            <TextBox Text="{Binding SelectedBook.b_author}" Margin="10"></TextBox>
+            <Label Content="Release Date:" Margin="0"/>
+            <DatePicker SelectedDate="{Binding SelectedBook.b_releaseDate}" DisplayDate="05/17/2022" Margin="10"></DatePicker>
+            <Label Content="Price:" Margin="0"/>
+            <TextBox Text="{Binding SelectedBook.b_price}" Margin="10"></TextBox>
+            <Label Content="Publisher Id:" Margin="0"/>
+            <ComboBox ItemsSource="{Binding AllPublisherIds}" SelectedItem="{Binding SelectedBook.b_publisher_id}" Margin="10"></ComboBox>
+            <Label Content="" Margin="0"/>
+            <Button Command="{Binding AddBookCommand}" Content="Add Book" Margin="10" />
+            <Button Command="{Binding EditBookCommand}" Content="Edit Book" Margin="10" />
+            <Button Command="{Binding DeleteBookCommand}" Content="Delete Book" Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>
