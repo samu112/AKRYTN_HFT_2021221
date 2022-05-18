@@ -51,9 +51,9 @@
             <Label Content="Quantity:" Margin="0"/>
             <TextBox Text="{Binding SelectedCartItem.ci_quantity}" Margin="10"></TextBox>
             <Label Content="" Margin="0"/>
-            <Button Command="{Binding AddCartItemCommand}" Content="Add Book" Margin="10" />
-            <Button Command="{Binding EditCartItemCommand}" Content="Edit Book" Margin="10" />
-            <Button Command="{Binding DeleteCartItemCommand}" Content="Delete Book" Margin="10" />
+            <Button Command="{Binding AddCartItemCommand}" Content="Add Cart Item" Margin="10" />
+            <Button Command="{Binding EditCartItemCommand}" Content="Edit Cart Item" Margin="10" />
+            <Button Command="{Binding DeleteCartItemCommand}" Content="Delete Cart Item" Margin="10" />
         </StackPanel>
     </Grid>
 </Window>

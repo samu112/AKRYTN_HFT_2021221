@@ -1,0 +1,56 @@
+﻿<Window x:Class="WpfClient.CartsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClient"
+        xmlns:viewModels="clr-namespace:WpfClient.ViewModels"
+        mc:Ignorable="d"
+        Title="CartsWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModels:CartsWindowViewModel></viewModels:CartsWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox 
+            ItemsSource="{Binding Carts}"
+            SelectedItem="{Binding SelectedCart}"
+            SelectedIndex="{Binding SelectedCartIndex}"
+            Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="{Binding c_id}" ContentStringFormat="ID: {0}"></Label>
+                        <Label Grid.Column="1" Content="{Binding c_user_id}" ContentStringFormat="User ID: {0}"></Label>
+                        <Label Grid.Column="2" Content="{Binding c_creditcardNumber}" ContentStringFormat="Credit Card: {0}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <Label Content="User ID:" Margin="0"/>
+            <ComboBox ItemsSource="{Binding AllUserIds}" SelectedItem="{Binding SelectedCart.c_user_id}" Margin="10"></ComboBox>
+            <Label Content="Billing Address:" Margin="0"/>
+            <TextBox Text="{Binding SelectedCart.c_billingAddress}" Margin="10"></TextBox>
+            <Label Content="Credit Card Number:" Margin="0"/>
+            <TextBox Text="{Binding SelectedCart.c_creditcardNumber}" Margin="10"></TextBox>
+            <Label Content="Delivery requested:" Margin="0"/>
+            <CheckBox Content="Yes" IsChecked="{Binding SelectedCart.c_deliver}" Margin="10"></CheckBox>
+            <Label Content="" Margin="0"/>
+            <Button Command="{Binding AddCartCommand}" Content="Add Cart" Margin="10" />
+            <Button Command="{Binding EditCartCommand}" Content="Edit Cart" Margin="10" />
+            <Button Command="{Binding DeleteCartCommand}" Content="Delete Cart" Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>

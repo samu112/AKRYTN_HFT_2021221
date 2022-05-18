@@ -14,6 +14,7 @@ namespace WpfClient.ViewModels
         public RelayCommand ManageBooksCommand { get; set; }
         public RelayCommand ManagePublishersCommand { get; set; }
         public RelayCommand ManageCartItemsCommand { get; set; }
+        public RelayCommand ManageCartsCommand { get; set; }
 
         public MainWindowViewModel()
         {
@@ -21,6 +22,7 @@ namespace WpfClient.ViewModels
             ManageBooksCommand = new RelayCommand(OpenBooksWindow);
             ManagePublishersCommand = new RelayCommand(OpenPublishersWindow);
             ManageCartItemsCommand = new RelayCommand(OpenCartItemsWindow);
+            ManageCartsCommand = new RelayCommand(OpenCartsWindow);
         }
 
         private void OpenUsersWindow()
@@ -38,6 +40,10 @@ namespace WpfClient.ViewModels
         private void OpenCartItemsWindow()
         {
             new CartItemsWindow().Show();
+        }
+        private void OpenCartsWindow()
+        {
+            new CartsWindow().Show();
         }
     }
 }
