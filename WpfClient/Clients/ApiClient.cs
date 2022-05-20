@@ -130,6 +130,26 @@ namespace WpfClient.Clients
             throw new Exception("The request was not successfull");
         }
 
+            //UserLogic methods:
+
+        //Get users with book older than x year
+        public List<User> UserWithBookOlderThanXyear(string endpoint, int year)
+        {
+            
+            List<User> item = new List<User>();
+            var response = HttpClient.GetAsync(endpoint + "/" + "olderthan/" + year.ToString() + "year").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                item = JsonConvert.DeserializeObject<List<User>>(responseString);
+
+                return item;
+            }
+
+            throw new Exception("The request was not successfull");
+        }
+
 
     }
 }

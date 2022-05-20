@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfClient"
         xmlns:viewModels="clr-namespace:WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="UsersWindow" Height="450" Width="800">
+        Title="UsersWindow" Height="550" Width="800">
     <Window.DataContext>
         <viewModels:UsersWindowViewModel></viewModels:UsersWindowViewModel>
     </Window.DataContext>
@@ -46,6 +46,16 @@
             <Label Content="Email:" Margin="0"/>
             <TextBox Text="{Binding SelectedUser.u_email}" Margin="10"></TextBox>
             <Label Content="" Margin="0"/>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding UserWithBookOlderThanXyearCommand}" Content="Search user's who has book older than:" />
+                <TextBox Text="{Binding Year}" Grid.Column="1" Margin="10" VerticalContentAlignment="Center"></TextBox>
+                <Label Content="years" Grid.Column="2" Margin="10"></Label>
+            </Grid>
             <Button Command="{Binding AddUserCommand}" Content="Add User" Margin="10" />
             <Button Command="{Binding EditUserCommand}" Content="Edit User" Margin="10" />
             <Button Command="{Binding DeleteUserCommand}" Content="Delete User" Margin="10" />

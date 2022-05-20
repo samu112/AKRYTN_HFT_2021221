@@ -40,9 +40,21 @@ namespace WpfClient.ViewModels
             }
         }
 
+        private string year = "0";
+
+        public string Year
+        {
+            get => year;
+            set
+            {
+                SetProperty(ref year, value);
+            }
+        }
+
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand EditUserCommand { get; set; }
         public RelayCommand DeleteUserCommand { get; set; }
+        public RelayCommand UserWithBookOlderThanXyearCommand { get; set; }
 
         public UsersWindowViewModel()
         {
@@ -64,6 +76,43 @@ namespace WpfClient.ViewModels
             AddUserCommand = new RelayCommand(AddUser);
             EditUserCommand = new RelayCommand(EditUser);
             DeleteUserCommand = new RelayCommand(DeleteUser);
+            UserWithBookOlderThanXyearCommand = new RelayCommand(UserWithBookOlderThanXyear);
+        }
+
+
+
+
+        private void UserWithBookOlderThanXyear()
+        {
+            bool good = true;
+            if (Year.Length > 0 && Year.Length < 4 && Year[0] != '0')
+            {
+                foreach (char c in Year)
+                {
+                    if (c < '0' || c > '9') { good = false; }
+                }
+            }
+            else { good = false; }
+
+            if (good == true)
+            {
+                var searchedUsers = _apiClient.UserWithBookOlderThanXyear("http://localhost:8921/user", Int32.Parse(Year));
+                if (searchedUsers.Count > 0)
+                {
+                    string searchResultForThis = "";
+                    for (int i = 0; i < searchedUsers.Count; i++)
+                    {
+                        searchResultForThis += (i + 1) + "; " + searchedUsers[i].u_name + "\n";
+                    }
+                    MessageBox.Show(searchResultForThis);
+                }
+                else { MessageBox.Show("No users found :("); }
+            }
+            else
+            {
+                MessageBox.Show("You have to give a valid number!");
+            }
+
         }
 
         private void AddUser()
@@ -84,33 +133,7 @@ namespace WpfClient.ViewModels
                     u_regDate = SelectedUser.u_regDate,
                     u_email = SelectedUser.u_email,
                     u_address = SelectedUser.u_address
-                };
-
-
-
-
-            //_apiClient
-            //    .PostAsync(newUser, "http://localhost:8921/user")
-            //    .ContinueWith((task) =>
-            //    {
-            //        Application.Current.Dispatcher.Invoke(() =>
-            //        {
-            //            //Get the id of the last added entity
-            //            _apiClient
-            //                .GetAsync<List<User>>("http://localhost:8921/user")
-            //                .ContinueWith((users) =>
-            //                {
-            //                    Application.Current.Dispatcher.Invoke(() =>
-            //                    {
-            //                        newUser.u_id = users.Result.LastOrDefault().u_id;
-            //                        Users.Add(newUser);
-            //                    });
-            //                });
-
-            //        });
-            //        
-            //
-            //    
+                }; 
 
                 _apiClient
                     .PostAsync(newUser, "http://localhost:8921/user")
