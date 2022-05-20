@@ -47,6 +47,7 @@ namespace WpfClient.ViewModels
         public RelayCommand AddPublisherCommand { get; set; }
         public RelayCommand EditPublisherCommand { get; set; }
         public RelayCommand DeletePublisherCommand { get; set; }
+        public RelayCommand GetPublisherBooksCommand { get; set; }
 
         public PublishersWindowViewModel()
         {
@@ -67,6 +68,35 @@ namespace WpfClient.ViewModels
             AddPublisherCommand = new RelayCommand(AddPublisher);
             EditPublisherCommand = new RelayCommand(EditPublisher);
             DeletePublisherCommand = new RelayCommand(DeletePublisher);
+            GetPublisherBooksCommand = new RelayCommand(GetPublisherBooks);
+        }
+
+        private void GetPublisherBooks()
+        {
+            if (SelectedPublisher != null)
+            {
+                try
+                {
+                    var booksOfThePublisher = _apiClient.GetPublisherBooks("http://localhost:8921/", SelectedPublisher.p_id);
+                    if (booksOfThePublisher.Count > 0)
+                    {
+                        string message = "";
+                        for (int i = 0; i < booksOfThePublisher.Count; i++)
+                        {
+                            message += (i + 1) + "; " + booksOfThePublisher[i].b_author + "-" + booksOfThePublisher[i].b_title + "\n";
+                        }
+                        MessageBox.Show(message);
+                    }
+                    else { MessageBox.Show("No books :("); }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Couldn't find publisher in the database!");
+                }
+
+            }
+            else { MessageBox.Show("No publisher selected!"); }
+
         }
 
         private void CopyPublisher(Publisher publisherCopiedFrom, Publisher publisherCopiedFor)

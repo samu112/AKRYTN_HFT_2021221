@@ -45,7 +45,7 @@
             <TextBox Text="{Binding SelectedPublisher.p_website}" Margin="10"></TextBox>
             <Label Content="Email:" Margin="0"/>
             <TextBox Text="{Binding SelectedPublisher.p_email}" Margin="10"></TextBox>
-            <Label Content="" Margin="0"/>
+            <Button Command="{Binding GetPublisherBooksCommand}" Content="Show Publisher's Books" Margin="10" />
             <Button Command="{Binding AddPublisherCommand}" Content="Add Publisher" Margin="10" />
             <Button Command="{Binding EditPublisherCommand}" Content="Edit Publisher" Margin="10" />
             <Button Command="{Binding DeletePublisherCommand}" Content="Delete Publisher" Margin="10" />

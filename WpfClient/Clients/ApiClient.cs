@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AKRYTN_HFT_2021221.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace WpfClient.Clients
     public class ApiClient
     {
         private static HttpClient HttpClient = new HttpClient();
+
+
+        //------------------------------------------------------------
+        //CRUD METHODS:
+        //------------------------------------------------------------
 
         public async Task<T> GetAsync<T>(string endpoint)
         {
@@ -60,5 +66,70 @@ namespace WpfClient.Clients
 
             response.EnsureSuccessStatusCode();
         }
+
+        //------------------------------------------------------------
+        //NON-CRUD:
+        //------------------------------------------------------------
+
+            //PublisherLogic methods:
+
+        //Get the books that were released by the given publisher
+        public List<Book> GetPublisherBooks(string endpoint, int id)
+        {
+            List<Book> items = new List<Book>();
+            string url = endpoint + "publisher" + "/" + id.ToString() + "/books";
+            var response = HttpClient.GetAsync(url).GetAwaiter().GetResult();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                var entities = JsonConvert.DeserializeObject<List<Book>>(responseString);
+
+                return entities;
+            }
+
+            throw new Exception("The request was not successfull");
+        }
+
+            //BookLogic methods:
+
+        //Get Publisher
+        public Publisher BookGetPublisher(string endpoint, int id)
+        {
+            Publisher item = default(Publisher);
+            var response = HttpClient.GetAsync(endpoint + "/" + id.ToString() + "/publisher").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                item = JsonConvert.DeserializeObject<Publisher>(responseString);
+
+                return item;
+            }
+
+            throw new Exception("The request was not successfull");
+        }
+
+            //CartLogic methods:
+
+        //Get the amount of money that is needed to pay for the cart content
+        public double GetCartPrice(string endpoint, int id)
+        {
+            double item = default(double);
+            var response = HttpClient.GetAsync(endpoint + "/" + id.ToString() + "/Price").GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                item = JsonConvert.DeserializeObject<double>(responseString);
+
+                return item;
+            }
+
+            throw new Exception("The request was not successfull");
+        }
+
+
     }
 }

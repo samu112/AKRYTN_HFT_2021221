@@ -47,7 +47,7 @@
             <TextBox Text="{Binding SelectedCart.c_creditcardNumber}" Margin="10"></TextBox>
             <Label Content="Delivery requested:" Margin="0"/>
             <CheckBox Content="Yes" IsChecked="{Binding SelectedCart.c_deliver}" Margin="10"></CheckBox>
-            <Label Content="" Margin="0"/>
+            <Button Command="{Binding GetCartPriceCommand}" Content="Get Full Price of the Cart" Margin="10" />
             <Button Command="{Binding AddCartCommand}" Content="Add Cart" Margin="10" />
             <Button Command="{Binding EditCartCommand}" Content="Edit Cart" Margin="10" />
             <Button Command="{Binding DeleteCartCommand}" Content="Delete Cart" Margin="10" />

@@ -47,7 +47,8 @@
             <TextBox Text="{Binding SelectedBook.b_price}" Margin="10"></TextBox>
             <Label Content="Publisher Id:" Margin="0"/>
             <ComboBox ItemsSource="{Binding AllPublisherIds}" SelectedItem="{Binding SelectedBook.b_publisher_id}" Margin="10"></ComboBox>
-            <Label Content="" Margin="0"/>
+            <Button Command="{Binding BookGetPublisherCommand}" Content="Show the name of the Publisher" Margin="10" />
+            
             <Button Command="{Binding AddBookCommand}" Content="Add Book" Margin="10" />
             <Button Command="{Binding EditBookCommand}" Content="Edit Book" Margin="10" />
             <Button Command="{Binding DeleteBookCommand}" Content="Delete Book" Margin="10" />

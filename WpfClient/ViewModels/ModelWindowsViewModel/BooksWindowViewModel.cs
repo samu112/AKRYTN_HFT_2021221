@@ -50,6 +50,8 @@ namespace WpfClient.ViewModels
         public RelayCommand AddBookCommand { get; set; }
         public RelayCommand EditBookCommand { get; set; }
         public RelayCommand DeleteBookCommand { get; set; }
+        public RelayCommand BookGetPublisherCommand { get; set; }
+
 
         public BooksWindowViewModel()
         {
@@ -84,6 +86,13 @@ namespace WpfClient.ViewModels
             AddBookCommand = new RelayCommand(AddBook);
             EditBookCommand = new RelayCommand(EditBook);
             DeleteBookCommand = new RelayCommand(DeleteBook);
+            BookGetPublisherCommand = new RelayCommand(BookGetPublisher);
+        }
+
+        private void BookGetPublisher()
+        {
+            var booksPublisher = _apiClient.BookGetPublisher("http://localhost:8921/book", SelectedBook.b_id);
+            MessageBox.Show(booksPublisher.p_name);
         }
 
         private void CopyBook(Book bookCopiedFrom, Book bookCopiedFor)

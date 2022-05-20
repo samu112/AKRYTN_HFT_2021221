@@ -49,6 +49,7 @@ namespace WpfClient.ViewModels
         public RelayCommand AddCartCommand { get; set; }
         public RelayCommand EditCartCommand { get; set; }
         public RelayCommand DeleteCartCommand { get; set; }
+        public RelayCommand GetCartPriceCommand { get; set; }
 
         public CartsWindowViewModel()
         {
@@ -83,6 +84,13 @@ namespace WpfClient.ViewModels
             AddCartCommand = new RelayCommand(AddCart);
             EditCartCommand = new RelayCommand(EditCart);
             DeleteCartCommand = new RelayCommand(DeleteCart);
+            GetCartPriceCommand = new RelayCommand(GetCartPrice);
+        }
+
+        private void GetCartPrice()
+        {
+            var price = _apiClient.GetCartPrice("http://localhost:8921/cart", SelectedCart.c_id);
+            MessageBox.Show("The full price is: " + price);
         }
 
         private void CopyCart(Cart cartCopiedFrom, Cart cartCopiedFor)
