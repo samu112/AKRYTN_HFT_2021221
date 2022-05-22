@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Book UI</title>
+    <link rel="stylesheet" href="stylecss.css" />
+</head>
+<body>
+    <h1>Book Catalog</h1>
+
+    <div id="formdiv">
+        <label>Title</label>
+        <input type="text" id="bookTitle" />
+        <label>Author</label>
+        <input type="text" id="author" />
+        <label>Price</label>
+        <input type="text" id="price" />
+        <label>Release Date</label>
+        <input type="date" id="releaseDate" />
+        <label>Publisher ID</label>
+        <select id="publisherId"></select>
+        <button type="button" onclick="create()">Add Book</button>
+
+        <div id="updateformdiv">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>ReleaseDate</th>
+                        <th>PublisherId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><Center><input type="text" id="bookidtoupdate" readonly /></Center></td>
+                        <td><Center><input type="text" id="booktitletoupdate" /></Center></td>
+                        <td><Center><input type="text" id="bookauthortoupdate" /></Center></td>
+                        <td><Center><input type="text" id="bookpricetoupdate" /></Center></td>
+                        <td><Center><input type="date" id="bookreleasedatetoupdate" /></Center></td>
+                        <td><Center><select id="bookpublisheridtoupdate"></select></Center></td>
+                        <td><Center><button id="actual_update" type="button" onclick="update()">Update book</button></Center></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>ReleaseDate</th>
+                <th>PublisherId</th>
+
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="book.js"></script>
+</body>
+</html>

@@ -2,19 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Publisher UI</title>
+    <title>User UI</title>
     <link rel="stylesheet" href="stylecss.css" />
 </head>
 <body>
-    <h1>Publisher Catalog</h1>
+    <h1>User Catalog</h1>
 
     <div id="formdiv">
-        <label>Publisher Name</label>
-        <input type="text" id="publishername" />
+        <label>User Name</label>
+        <input type="text" id="username" />
+        <label>Registration Date</label>
+        <input type="datetime-local" id="regDate" />
         <label>Address</label>
         <input type="text" id="address" />
-        <label>Website</label>
-        <input type="text" id="website" />
         <label>Email</label>
         <input type="text" id="email" />
         <button type="button" onclick="create()">Add Publisher</button>
@@ -24,20 +24,20 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>PublisherName</th>
+                        <th>UserName</th>
+                        <th>RegistrationDate</th>
                         <th>Address</th>
-                        <th>Website</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><Center><input type="text" id="publisheridtoupdate" readonly/></Center></td>
-                        <td><Center><input type="text" id="publishernametoupdate" /></Center></td>
-                        <td><Center><input type="text" id="publisheraddresstoupdate" /></Center></td>
-                        <td><Center><input type="text" id="publisherwebsitetoupdate" /></Center></td>
-                        <td><Center><input type="text" id="publisheremailtoupdate" /></Center></td>
-                        <td><Center><button id="actual_update" type="button" onclick="update()">Update publisher</button></Center></td>
+                        <td><Center><input type="text" id="useridtoupdate" readonly/></Center></td>
+                        <td><Center><input type="text" id="usernametoupdate" /></Center></td>
+                        <td><Center><input type="datetime-local" id="userregdatetoupdate" /></Center></td>
+                        <td><Center><input type="text" id="useraddresstoupdate" /></Center></td>
+                        <td><Center><input type="text" id="useremailtoupdate" /></Center></td>
+                        <td><Center><button id="actual_update" type="button" onclick="update()">Update user</button></Center></td>
                     </tr>
                 </tbody>
             </table>
@@ -49,9 +49,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>PublisherName</th>
+                <th>UserName</th>
+                <th>RegistrationDate</th>
                 <th>Address</th>
-                <th>Website</th>
                 <th>Email</th>
 
             </tr>
@@ -61,6 +61,6 @@
     </table>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="publisher.js"></script>
+    <script src="user.js"></script>
 </body>
 </html>

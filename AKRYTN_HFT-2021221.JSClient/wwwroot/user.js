@@ -11,15 +11,15 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("PublisherCreated", (user, message) => {
+    connection.on("UserCreated", (user, message) => {
         getdata();
     });
 
-    connection.on("PublisherDeleted", (user, message) => {
+    connection.on("UserDeleted", (user, message) => {
         getdata();
     });
 
-    connection.on("PublisherUpdated", (user, message) => {
+    connection.on("UserUpdated", (user, message) => {
         getdata();
 
     });
@@ -42,11 +42,10 @@ async function start() {
 
 
 async function getdata() {
-    await fetch('http://localhost:8921/publisher/')
+    await fetch('http://localhost:8921/user/')
         .then(x => x.json())
         .then(y => {
             users = Object.values(y)[1];
-            //console.log(publishers);
             display();
         });
 }
@@ -58,39 +57,40 @@ function display() {
 
     users.forEach(t => {
         document.getElementById("resultarea").innerHTML +=
-            "<tr><td>" + t.p_id + "</td><td>" + t.p_name + "</td><td>" + t.p_address + "</td><td>" + t.p_website + "</td><td>" + t.p_email + "</td><td>" + `<button type="button" onclick="remove(${t.p_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.p_id},'${t.p_name}','${t.p_address}','${t.p_website}','${t.p_email}')">Edit</button>` + "</td></tr>";
+            "<tr><td>" + t.u_id + "</td><td>" + t.u_name + "</td><td>" + t.u_regDate + "</td><td>" + t.u_address + "</td><td>" + t.u_email + "</td><td>" + `<button type="button" onclick="remove(${t.u_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.u_id},'${t.u_name}','${t.u_regDate}','${t.u_address}','${t.u_email}')">Edit</button>` + "</td></tr>";
 
-        console.log(t.p_name);
+        console.log(t.u_name);
     });
 }
 
-function showupdate(id, name, address, website, email) {
-    document.getElementById('publisheridtoupdate').value = id;
-    document.getElementById('publishernametoupdate').value = name;
-    document.getElementById('publisheraddresstoupdate').value = address;
-    document.getElementById('publisherwebsitetoupdate').value = website;
-    document.getElementById('publisheremailtoupdate').value = email;
+function showupdate(id, name, regDate, address, email) {
+    document.getElementById('useridtoupdate').value = id;
+    document.getElementById('usernametoupdate').value = name;
+    dasjdaskj = new Date(regDate)
+    document.getElementById('userregdatetoupdate').value = new Date(regDate).toISOString().slice(0, 16);
+    document.getElementById('useraddresstoupdate').value = address;
+    document.getElementById('useremailtoupdate').value = email;
     document.getElementById('updateformdiv').style.display = 'flex';
 }
 
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
-    let id = document.getElementById('publisheridtoupdate').value;
-    let name = document.getElementById('publishernametoupdate').value;
-    let address = document.getElementById('publisheraddresstoupdate').value;
-    let website = document.getElementById('publisherwebsitetoupdate').value;
-    let email = document.getElementById('publisheremailtoupdate').value;
-    fetch('http://localhost:8921/publisher', {
+    let id = document.getElementById('useridtoupdate').value;
+    let name = document.getElementById('usernametoupdate').value;
+    let regDate = document.getElementById('userregdatetoupdate').value;
+    let address = document.getElementById('useraddresstoupdate').value;
+    let email = document.getElementById('useremailtoupdate').value;
+    fetch('http://localhost:8921/user', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
             {
-                p_id: id,
-                p_name: name,
-                p_address: address,
-                p_website: website,
-                p_email: email
+                u_id: id,
+                u_name: name,
+                u_regDate: regDate,
+                u_address: address,
+                u_email: email
             })
     })
         .then(response => response)
@@ -105,13 +105,13 @@ function update() {
 
 
 function create() {
-    let publishername = document.getElementById('publishername').value;
+    let username = document.getElementById('username').value;
+    let regDate = document.getElementById('regDate').value;
     let address = document.getElementById('address').value;
-    let website = document.getElementById('website').value;
     let email = document.getElementById('email').value;
 
 
-    fetch('http://localhost:8921/publisher', {
+    fetch('http://localhost:8921/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -119,11 +119,10 @@ function create() {
         body: JSON.stringify(
             {
 
-                p_name: publishername,
-                p_address: address,
-
-                p_website: website,
-                p_email: email
+                u_name: username,
+                u_regDate: regDate,
+                u_address: address,
+                u_email: email
             }),
     })
         .then(response => response)
@@ -138,7 +137,7 @@ function create() {
 }
 
 function remove(id) {
-    fetch('http://localhost:8921/publisher/' + id, {
+    fetch('http://localhost:8921/user/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
