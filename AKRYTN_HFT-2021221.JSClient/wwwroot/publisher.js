@@ -47,7 +47,7 @@ async function getdata() {
     await fetch('http://localhost:8921/publisher/')
         .then(x => x.json())
         .then(y => {
-            publishers = y;
+            publishers = Object.values(y)[1];
             //console.log(publishers);
             display();
         });
@@ -60,14 +60,14 @@ function display() {
 
     publishers.forEach(t => {
         document.getElementById("resultarea").innerHTML +=
-            "<tr><td>" + t.p_id + "</td><td>" + t.p_name + "</td><td>" + t.p_address + "</td><td>" + t.p_website + "</td><td>" + t.p_email + "</td><td>" + `<button type="button" onclick="remove(${t.p_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.p_id})">Edit</button>` + "</td></tr>";
+            "<tr><td>" + t.p_id + "</td><td>" + t.p_name + "</td><td>" + t.p_address + "</td><td>" + t.p_website + "</td><td>" + t.p_email + "</td><td>" + `<button type="button" onclick="remove(${t.p_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.p_id},'${t.p_name}')">Edit</button>` + "</td></tr>";
 
         console.log(t.p_name);
     });
 }
 
-function showupdate(id) {
-    document.getElementById('publishernametoupdate').value = publishers.find(t => t['p_Id'] == id)['p_name'];
+function showupdate(id, name) {
+    document.getElementById('publishernametoupdate').value = name;
     document.getElementById('updateformdiv').style.display = 'flex';
     publisherIdToUpdate = id;
 
@@ -95,14 +95,13 @@ function update() {
 
 
 function create() {
-    let cashiername = document.getElementById('cashiername').value;
+    let publishername = document.getElementById('publishername').value;
     let address = document.getElementById('address').value;
-    let bankaccount = document.getElementById('bankaccount').value;
-    let insurance = document.getElementById('insurance').value;
-    let salary = Number(document.getElementById('salary').value);
+    let website = document.getElementById('website').value;
+    let email = document.getElementById('email').value;
 
 
-    fetch('http://localhost:37827/cashier', {
+    fetch('http://localhost:8921/publisher', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -110,12 +109,11 @@ function create() {
         body: JSON.stringify(
             {
 
-                cashierName: cashiername,
-                address: address,
+                p_name: publishername,
+                p_address: address,
 
-                bankaccount: bankaccount,
-                insurance: insurance,
-                salary: salary
+                p_website: website,
+                p_email: email
             }),
     })
         .then(response => response)
@@ -130,7 +128,7 @@ function create() {
 }
 
 function remove(id) {
-    fetch('http://localhost:37827/cashier/' + id, {
+    fetch('http://localhost:8921/publisher/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
