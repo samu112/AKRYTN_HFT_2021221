@@ -67,19 +67,22 @@ function display() {
 }
 
 function showupdate(id, name, address, website, email) {
+    document.getElementById('publisheridtoupdate').value = id;
     document.getElementById('publishernametoupdate').value = name;
+    document.getElementById('publisheraddresstoupdate').value = address;
+    document.getElementById('publisherwebsitetoupdate').value = website;
+    document.getElementById('publisheremailtoupdate').value = email;
     document.getElementById('updateformdiv').style.display = 'flex';
-    publisherIdToUpdate = id;
-    document.getElementById("actual_update").outerHTML = `<button id="actual_update" type="button" onclick="update(${id},'${address}','${website}','${email}')">Update publisher</button>`
-
-
-    //update(id, address, website, email);
 }
 
 
-function update(id, address, website, email) {
+function update() {
     document.getElementById('updateformdiv').style.display = 'none';
+    let id = document.getElementById('publisheridtoupdate').value;
     let name = document.getElementById('publishernametoupdate').value;
+    let address = document.getElementById('publisheraddresstoupdate').value;
+    let website = document.getElementById('publisherwebsitetoupdate').value;
+    let email = document.getElementById('publisheremailtoupdate').value;
     fetch('http://localhost:8921/publisher', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },

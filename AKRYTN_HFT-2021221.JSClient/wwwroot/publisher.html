@@ -19,11 +19,36 @@
         <input type="text" id="email" />
         <button type="button" onclick="create()">Add Publisher</button>
 
-        <div id="updateformdiv">
+        <!--<div id="updateformdiv">
             <label>Publisher name</label>
             <input type="text" id="publishernametoupdate" />
             <button id="actual_update" type="button" onclick="update()">Update publisher</button>
+        </div>-->
+
+        <div id="updateformdiv">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PublisherName</th>
+                        <th>Address</th>
+                        <th>Website</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><Center><input type="text" id="publisheridtoupdate" /></Center></td>
+                        <td><Center><input type="text" id="publishernametoupdate" /></Center></td>
+                        <td><Center><input type="text" id="publisheraddresstoupdate" /></Center></td>
+                        <td><Center><input type="text" id="publisherwebsitetoupdate" /></Center></td>
+                        <td><Center><input type="text" id="publisheremailtoupdate" /></Center></td>
+                        <td><Center><button id="actual_update" type="button" onclick="update()">Update publisher</button></Center></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
     </div>
 
     <table>
