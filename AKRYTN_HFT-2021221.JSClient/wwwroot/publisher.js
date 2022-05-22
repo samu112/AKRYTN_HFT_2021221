@@ -60,28 +60,37 @@ function display() {
 
     publishers.forEach(t => {
         document.getElementById("resultarea").innerHTML +=
-            "<tr><td>" + t.p_id + "</td><td>" + t.p_name + "</td><td>" + t.p_address + "</td><td>" + t.p_website + "</td><td>" + t.p_email + "</td><td>" + `<button type="button" onclick="remove(${t.p_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.p_id},'${t.p_name}')">Edit</button>` + "</td></tr>";
+            "<tr><td>" + t.p_id + "</td><td>" + t.p_name + "</td><td>" + t.p_address + "</td><td>" + t.p_website + "</td><td>" + t.p_email + "</td><td>" + `<button type="button" onclick="remove(${t.p_id})">Delete</button>` + `<button type="button" onclick="showupdate(${t.p_id},'${t.p_name}','${t.p_address}','${t.p_website}','${t.p_email}')">Edit</button>` + "</td></tr>";
 
         console.log(t.p_name);
     });
 }
 
-function showupdate(id, name) {
+function showupdate(id, name, address, website, email) {
     document.getElementById('publishernametoupdate').value = name;
     document.getElementById('updateformdiv').style.display = 'flex';
     publisherIdToUpdate = id;
+    document.getElementById("actual_update").outerHTML = `<button id="actual_update" type="button" onclick="update(${id},'${address}','${website}','${email}')">Update publisher</button>`
 
+
+    //update(id, address, website, email);
 }
 
 
-function update() {
+function update(id, address, website, email) {
     document.getElementById('updateformdiv').style.display = 'none';
     let name = document.getElementById('publishernametoupdate').value;
     fetch('http://localhost:8921/publisher', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { p_id: publisherIdToUpdate, p_name: name })
+            {
+                p_id: id,
+                p_name: name,
+                p_address: address,
+                p_website: website,
+                p_email: email
+            })
     })
         .then(response => response)
         .then(data => {
