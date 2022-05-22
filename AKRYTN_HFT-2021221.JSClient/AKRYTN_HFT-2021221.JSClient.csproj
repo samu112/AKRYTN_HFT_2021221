@@ -5,4 +5,8 @@
     <RootNamespace>AKRYTN_HFT_2021221.JSClient</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
 </Project>

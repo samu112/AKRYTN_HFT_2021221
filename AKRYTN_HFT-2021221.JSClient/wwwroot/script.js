@@ -1,5 +1,8 @@
 ﻿let users = [];
 let connection = null;
+
+let userIdToUpdate = -1;
+
 getdata();
 setupSignalR();
 

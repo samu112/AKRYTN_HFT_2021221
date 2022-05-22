@@ -22,6 +22,7 @@ namespace AKRYTN_HFT_2021221.Models
 
         // FK: Id of the book
         [ForeignKey(nameof(Book))]
+
         public int ci_book_id { get; set; }
 
         [JsonIgnore]

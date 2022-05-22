@@ -1,6 +1,8 @@
-﻿using AKRYTN_HFT_2021221.Logic;
+﻿using AKRYTN_HFT_2021221.Endpoint.Services;
+using AKRYTN_HFT_2021221.Logic;
 using AKRYTN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,12 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
     public class BookController : ControllerBase
     {
         IBookLogic _BookLogic;
+        IHubContext<SignalHub> hub;
 
-        public BookController(IBookLogic bookLogic)
+        public BookController(IBookLogic bookLogic, IHubContext<SignalHub> hub)
         {
             _BookLogic = bookLogic;
+            this.hub = hub;
         }
 
 
@@ -43,13 +47,16 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Book value)
         {
             _BookLogic.AddBook(value);
+            this.hub.Clients.All.SendAsync("BookCreated", value);
         }
 
         // DELETE /Book/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Book bookToDelete = this._BookLogic.GetBook(id);
             _BookLogic.DeleteBook(id);
+            this.hub.Clients.All.SendAsync("BookDeleted", bookToDelete);
         }
 
         //Change Book
@@ -62,6 +69,7 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Book value)
         {
             _BookLogic.ChangeBook(value.b_id, value);
+            this.hub.Clients.All.SendAsync("BookUpdated", value);
         }
 
 

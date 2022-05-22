@@ -1,6 +1,7 @@
 ﻿using AKRYTN_HFT_2021221.Logic;
 using AKRYTN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
     public class CartController
     {
         ICartLogic _cartLogic;
+        IHubContext<SignalHub> hub;
 
-        public CartController(ICartLogic cartLogic)
+        public CartController(ICartLogic cartLogic, IHubContext<SignalHub> hub)
         {
             _cartLogic = cartLogic;
+            this.hub = hub;
         }
 
 
@@ -43,13 +46,16 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Cart value)
         {
             _cartLogic.AddNewCart(value);
+            this.hub.Clients.All.SendAsync("CartCreated", value);
         }
 
         // DELETE /Cart/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Cart cartToDelete = this._cartLogic.GetCart(id);
             _cartLogic.DeleteCart(id);
+            this.hub.Clients.All.SendAsync("CartDeleted", cartToDelete);
         }
 
         //Change Cart quantity
@@ -58,6 +64,7 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Cart value)
         {
             _cartLogic.ChangeCart(value.c_id, value);
+            this.hub.Clients.All.SendAsync("CartUpdated", value);
         }
 
 

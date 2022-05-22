@@ -1,6 +1,7 @@
 ﻿using AKRYTN_HFT_2021221.Logic;
 using AKRYTN_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
     public class UserController
     {
         IUserLogic _userLogic;
+        IHubContext<SignalHub> hub;
 
-        public UserController(IUserLogic userLogic)
+        public UserController(IUserLogic userLogic, IHubContext<SignalHub> hub)
         {
             _userLogic = userLogic;
+            this.hub = hub;
         }
 
         //------------------------------------------------------------
@@ -42,13 +45,16 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] User value)
         {
             _userLogic.AddNewUser(value);
+            this.hub.Clients.All.SendAsync("UserCreated", value);
         }
 
         // DELETE /User/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            User userToDelete = this._userLogic.GetUser(id);
             _userLogic.DeleteUser(id);
+            this.hub.Clients.All.SendAsync("UserDeleted", userToDelete);
         }
 
         // PUT /User
@@ -56,6 +62,7 @@ namespace AKRYTN_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] User value)
         {
             _userLogic.ChangeUser(value.u_id, value);
+            this.hub.Clients.All.SendAsync("UserUpdated", value);
         }
 
 

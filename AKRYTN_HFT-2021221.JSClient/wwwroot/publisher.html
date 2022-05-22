@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Publisher UI</title>
+    <link rel="stylesheet" href="stylecss.css" />
+</head>
+<body>
+    <h1>Publisher Catalog</h1>
+
+    <div id="formdiv">
+        <label>Publisher Name</label>
+        <input type="text" id="publishername" />
+        <label>Address</label>
+        <input type="text" id="address" />
+        <label>Website</label>
+        <input type="text" id="website" />
+        <label>Email</label>
+        <input type="text" id="email" />
+        <button type="button" onclick="create()">Add Publisher</button>
+
+        <div id="updateformdiv">
+            <label>Publisher name</label>
+            <input type="text" id="publishernametoupdate" />
+            <button type="button" onclick="update()">Update publisher</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PublisherName</th>
+                <th>Address</th>
+                <th>Website</th>
+                <th>Email</th>
+
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="publisher.js"></script>
+</body>
+</html>

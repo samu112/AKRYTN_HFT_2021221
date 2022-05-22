@@ -45,7 +45,6 @@ namespace AKRYTN_HFT_2021221_Endpoint
             services.AddTransient<IUserRepository, UserRepository>();
             //DbContext
             services.AddScoped<BookStoreDbContext, BookStoreDbContext>();
-
             //SignalR
             services.AddSignalR();
 
