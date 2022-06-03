@@ -27,19 +27,19 @@
     <br />
     Shared:
     <br />
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT-2021221.JSClient">Models</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Models">Models</a>
     <br />
     Backend:
     <br />
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Client">Data Layer</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Data">Data Layer</a>
     ·
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/WpfClient">Repository Layer</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Repository">Repository Layer</a>
     ·
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT-2021221.JSClient">Logic Layer</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Logic">Logic Layer</a>
     <br />
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT-2021221.JSClient">Endpoint</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Endpoint">Endpoint</a>
     ·
-    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT-2021221.JSClient">Unit Tests</a>
+    <a href="https://github.com/samu112/AKRYTN_HFT_2021221/tree/master/AKRYTN_HFT_2021221.Test">Unit Tests</a>
 
 
 
